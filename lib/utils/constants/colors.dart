@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 class ZohColors {
   ZohColors._();
   /// App Basic Colors
-  static const primaryColor = Color(0x312BD1FF);
-  static const primaryOpacity = Color(0xC827AAD1);
+  static const primaryColor = Color(0xFF20A189);
+  static const primaryOpacity = Color(0xF713F3A4);
   static const secondaryColor = Color(0xFFAE531B);
   static const darkColor = Color(0xFF401D07);
   static const bodyTextColor = Color(0xF99EACAF);

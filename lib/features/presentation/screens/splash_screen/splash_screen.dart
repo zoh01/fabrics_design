@@ -20,9 +20,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     Future.delayed(Duration(seconds: 8)).then((zoh) {
       Navigator.pushReplacement(
-        context,
-        CupertinoPageRoute(builder: (ctx) => OnboardingScreen()),
-      );
+          context, CupertinoPageRoute(builder: (ctx) => OnboardingScreen()));
     });
     super.initState();
   }
