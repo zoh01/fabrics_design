@@ -1,4 +1,5 @@
 import 'package:fabrics_design/features/domain/models/onboarding_models.dart';
+import 'package:fabrics_design/features/presentation/screens/getstarted_screen/getstarted_screen.dart';
 import 'package:fabrics_design/features/presentation/screens/onboarding_screen/widgets/dot_indicator.dart';
 import 'package:fabrics_design/features/presentation/screens/onboarding_screen/widgets/onboarding_content.dart';
 import 'package:fabrics_design/utils/constants/colors.dart';
@@ -6,6 +7,7 @@ import 'package:fabrics_design/utils/constants/image_strings.dart';
 import 'package:fabrics_design/utils/constants/sizes.dart';
 import 'package:fabrics_design/utils/constants/text_strings.dart';
 import 'package:fabrics_design/utils/helper_functions/helper_functions.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -92,7 +94,14 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                      context,
+                      CupertinoPageRoute(
+                        builder: (context) => GetstartedScreen(),
+                      ),
+                    );
+                  },
                   style: ElevatedButton.styleFrom(
                     elevation: 5,
                     backgroundColor: ZohColors.primaryColor,

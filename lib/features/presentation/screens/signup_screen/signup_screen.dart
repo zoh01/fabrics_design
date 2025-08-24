@@ -1,14 +1,15 @@
-import 'package:fabrics_design/features/presentation/screens/login_screen/widgets/login_form.dart';
-import 'package:fabrics_design/features/presentation/screens/signup_screen/signup_screen.dart';
-import 'package:fabrics_design/utils/constants/colors.dart';
+import 'package:fabrics_design/features/presentation/screens/login_screen/login_screen.dart';
+import 'package:fabrics_design/features/presentation/screens/signup_screen/widgets/signup_form.dart';
 import 'package:fabrics_design/utils/constants/sizes.dart';
-import 'package:fabrics_design/utils/constants/text_strings.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+import '../../../../utils/constants/colors.dart';
+import '../../../../utils/constants/text_strings.dart';
+
+class SignupScreen extends StatelessWidget {
+  const SignupScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +21,7 @@ class LoginScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                'Login Here',
+                'Create Account',
                 style: GoogleFonts.staatliches(
                   fontSize: ZohSizes.defaultSpace * 1.4,
                   fontWeight: FontWeight.bold,
@@ -30,19 +31,20 @@ class LoginScreen extends StatelessWidget {
               ),
               SizedBox(height: ZohSizes.sm),
               Text(
-                ZohTextString.welcome,
+                ZohTextString.create,
                 style: GoogleFonts.saira(
-                  fontSize: ZohSizes.defaultSpace,
+                  fontSize: ZohSizes.spaceBtwZoh,
                   fontWeight: FontWeight.bold,
                   color: ZohColors.darkColor,
                 ),
                 textAlign: TextAlign.center,
               ),
-
               SizedBox(height: ZohSizes.spaceBtwSections),
 
-              LoginForm(),
+              SignUpForm(),
+
               SizedBox(height: ZohSizes.spaceBtwZoh),
+
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
@@ -50,7 +52,7 @@ class LoginScreen extends StatelessWidget {
                     Navigator.pushReplacement(
                       context,
                       CupertinoPageRoute(
-                        builder: (context) => SignupScreen(),
+                        builder: (context) => LoginScreen(),
                       ),
                     );
                   },
@@ -64,7 +66,7 @@ class LoginScreen extends StatelessWidget {
                     ),
                   ),
                   child: Text(
-                    'Create an account',
+                    'Already have an account',
                     style: TextStyle(
                       fontFamily: 'Roboto',
                       fontSize: ZohSizes.spaceBtwZoh,
