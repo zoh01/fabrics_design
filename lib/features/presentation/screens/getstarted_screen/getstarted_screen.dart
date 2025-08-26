@@ -8,9 +8,10 @@ import 'package:fabrics_design/utils/helper_functions/helper_functions.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:animate_do/animate_do.dart';
 
-class GetstartedScreen extends StatelessWidget {
-  const GetstartedScreen({super.key});
+class GetStartedScreen extends StatelessWidget {
+  const GetStartedScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,31 +23,40 @@ class GetstartedScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Spacer(),
-              Image(
-                image: AssetImage(ZohImageStrings.fabricsImage),
-                height: ZohHelperFunctions.screenHeight() * .3,
-                fit: BoxFit.contain,
+              BounceInDown(
+                duration: Duration(milliseconds: 2000),
+                child: Image(
+                  image: AssetImage(ZohImageStrings.fabricsImage),
+                  height: ZohHelperFunctions.screenHeight() * .3,
+                  fit: BoxFit.contain,
+                ),
               ),
               Spacer(),
-              Text(
-                ZohTextString.discover,
-                style: GoogleFonts.oswald(
-                  fontSize: ZohSizes.defaultSpace * 1.3,
-                  fontWeight: FontWeight.bold,
-                  color: ZohColors.primaryColor,
+              SlideInLeft(
+                duration: Duration(milliseconds: 2000),
+                child: Text(
+                  ZohTextString.discover,
+                  style: GoogleFonts.oswald(
+                    fontSize: ZohSizes.defaultSpace * 1.3,
+                    fontWeight: FontWeight.bold,
+                    color: ZohColors.primaryColor,
+                  ),
+                  textAlign: TextAlign.center,
                 ),
-                textAlign: TextAlign.center,
               ),
               SizedBox(height: ZohSizes.md),
-              Text(
-                ZohTextString.explore,
-                style: TextStyle(
-                  fontFamily: 'Inter',
-                  fontSize: ZohSizes.spaceBtwZoh,
-                  fontWeight: FontWeight.bold,
-                  color: ZohColors.darkColor,
+              SlideInRight(
+                duration: Duration(milliseconds: 2000),
+                child: Text(
+                  ZohTextString.explore,
+                  style: TextStyle(
+                    fontFamily: 'Inter',
+                    fontSize: ZohSizes.spaceBtwZoh,
+                    fontWeight: FontWeight.bold,
+                    color: ZohColors.darkColor,
+                  ),
+                  textAlign: TextAlign.center,
                 ),
-                textAlign: TextAlign.center,
               ),
 
               Spacer(),
@@ -54,41 +64,47 @@ class GetstartedScreen extends StatelessWidget {
               Row(
                 children: [
                   Expanded(
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.pushReplacement(
-                          context,
-                          CupertinoPageRoute(
-                            builder: (context) => LoginScreen(),
-                          ),
-                        );
-                      },
-                      style: ElevatedButton.styleFrom(
-                        elevation: 5,
-                        backgroundColor: ZohColors.primaryColor,
-                        side: BorderSide(color: ZohColors.primaryColor),
+                    child: BounceInUp(
+                      duration: Duration(milliseconds: 2000),
+                      child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.pushReplacement(
+                            context,
+                            CupertinoPageRoute(
+                              builder: (context) => LoginScreen(),
+                            ),
+                          );
+                        },
+                        style: ElevatedButton.styleFrom(
+                          elevation: 5,
+                          backgroundColor: ZohColors.primaryColor,
+                          side: BorderSide(color: ZohColors.primaryColor),
+                        ),
+                        child: Text('Login', style: GoogleFonts.viga(
+                          fontSize: ZohSizes.spaceBtwZoh,
+                          color: Colors.white,
+                        ),),
                       ),
-                      child: Text('Login', style: GoogleFonts.viga(
-                        fontSize: ZohSizes.spaceBtwZoh,
-                        color: Colors.white,
-                      ),),
                     ),
                   ),
                   SizedBox(width: ZohSizes.sm),
                   Expanded(
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.pushReplacement(context, CupertinoPageRoute(builder: (context) => SignupScreen()));
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.transparent,
-                        side: BorderSide(color: Colors.transparent),
-                      ),
-                      child: Text(
-                        'Register',
-                        style: GoogleFonts.viga(
-                          color: ZohColors.primaryColor,
-                          fontSize: ZohSizes.spaceBtwZoh,
+                    child: BounceInUp(
+                      duration: Duration(milliseconds: 2000),
+                      child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.pushReplacement(context, CupertinoPageRoute(builder: (context) => SignupScreen()));
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.transparent,
+                          side: BorderSide(color: Colors.transparent),
+                        ),
+                        child: Text(
+                          'Register',
+                          style: GoogleFonts.viga(
+                            color: ZohColors.primaryColor,
+                            fontSize: ZohSizes.spaceBtwZoh,
+                          ),
                         ),
                       ),
                     ),

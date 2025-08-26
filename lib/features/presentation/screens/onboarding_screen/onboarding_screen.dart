@@ -98,7 +98,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     Navigator.pushReplacement(
                       context,
                       CupertinoPageRoute(
-                        builder: (context) => GetstartedScreen(),
+                        builder: (context) => GetStartedScreen(),
                       ),
                     );
                   },

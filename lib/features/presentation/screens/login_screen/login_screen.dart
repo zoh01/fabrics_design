@@ -6,6 +6,7 @@ import 'package:fabrics_design/utils/constants/text_strings.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:animate_do/animate_do.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -19,57 +20,63 @@ class LoginScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
-                'Login Here',
-                style: GoogleFonts.staatliches(
-                  fontSize: ZohSizes.defaultSpace * 1.4,
-                  fontWeight: FontWeight.bold,
-                  color: ZohColors.primaryColor,
+              BounceIn(
+                child: Text(
+                  'Login Here',
+                  style: GoogleFonts.staatliches(
+                    fontSize: ZohSizes.defaultSpace * 1.4,
+                    fontWeight: FontWeight.bold,
+                    color: ZohColors.primaryColor,
+                  ),
+                  textAlign: TextAlign.center,
                 ),
-                textAlign: TextAlign.center,
               ),
               SizedBox(height: ZohSizes.sm),
-              Text(
-                ZohTextString.welcome,
-                style: GoogleFonts.saira(
-                  fontSize: ZohSizes.defaultSpace,
-                  fontWeight: FontWeight.bold,
-                  color: ZohColors.darkColor,
+              BounceIn(
+                child: Text(
+                  ZohTextString.welcome,
+                  style: GoogleFonts.saira(
+                    fontSize: ZohSizes.defaultSpace,
+                    fontWeight: FontWeight.bold,
+                    color: ZohColors.darkColor,
+                  ),
+                  textAlign: TextAlign.center,
                 ),
-                textAlign: TextAlign.center,
               ),
 
               SizedBox(height: ZohSizes.spaceBtwSections),
 
               LoginForm(),
               SizedBox(height: ZohSizes.spaceBtwZoh),
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushReplacement(
-                      context,
-                      CupertinoPageRoute(
-                        builder: (context) => SignupScreen(),
-                      ),
-                    );
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.transparent,
-                    side: BorderSide(color: Colors.transparent),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadiusGeometry.circular(
-                        ZohSizes.md,
+              SlideInRight(
+                child: SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.pushReplacement(
+                        context,
+                        CupertinoPageRoute(
+                          builder: (context) => SignupScreen(),
+                        ),
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.transparent,
+                      side: BorderSide(color: Colors.transparent),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadiusGeometry.circular(
+                          ZohSizes.md,
+                        ),
                       ),
                     ),
-                  ),
-                  child: Text(
-                    'Create an account',
-                    style: TextStyle(
-                      fontFamily: 'Roboto',
-                      fontSize: ZohSizes.spaceBtwZoh,
-                      fontWeight: FontWeight.bold,
-                      color: ZohColors.darkColor,
+                    child: Text(
+                      'Create an account',
+                      style: TextStyle(
+                        fontFamily: 'Roboto',
+                        fontSize: ZohSizes.spaceBtwZoh,
+                        fontWeight: FontWeight.bold,
+                        color: ZohColors.darkColor,
+                      ),
                     ),
                   ),
                 ),

@@ -7,6 +7,7 @@ import 'package:fabrics_design/utils/constants/text_strings.dart';
 import 'package:fabrics_design/utils/helper_functions/helper_functions.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:animate_do/animate_do.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -33,25 +34,32 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image(
-              image: AssetImage(ZohImageStrings.fabricsImage),
-              height: ZohHelperFunctions.screenHeight() * .4,
-              alignment: AlignmentGeometry.center,
+            BounceIn(
+              duration: Duration(milliseconds: 5000),
+              child: Image(
+                image: AssetImage(ZohImageStrings.fabricsImage),
+                height: ZohHelperFunctions.screenHeight() * .4,
+                alignment: AlignmentGeometry.center,
+              ),
             ),
 
             SizedBox(height: ZohSizes.spaceBtwSections),
 
-            SizedBox(
-              child: DefaultTextStyle(
-                style: TextStyle(
-                  fontFamily: 'Roboto',
-                  color: ZohColors.darkColor,
-                  fontSize: ZohSizes.spaceBtwZoh,
-                ),
-                child: AnimatedTextKit(
-                  animatedTexts: [
-                    TypewriterAnimatedText(ZohTextString.splashTitle),
-                  ],
+            SlideInRight(
+              duration: Duration(milliseconds: 3000),
+              child: SizedBox(
+                child: DefaultTextStyle(
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontFamily: 'Roboto',
+                    color: ZohColors.darkColor,
+                    fontSize: ZohSizes.spaceBtwZoh,
+                  ),
+                  child: AnimatedTextKit(
+                    animatedTexts: [
+                      TypewriterAnimatedText(ZohTextString.splashTitle),
+                    ],
+                  ),
                 ),
               ),
             ),

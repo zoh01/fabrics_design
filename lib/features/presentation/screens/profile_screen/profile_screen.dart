@@ -1,14 +1,14 @@
 import 'package:fabrics_design/utils/constants/sizes.dart';
 import 'package:flutter/material.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+class ProfileScreen extends StatelessWidget {
+  const ProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Text('Home Screen', style: TextStyle(fontSize: ZohSizes.spaceBtwSections),),
+        child: Text('Profile Screen', style: TextStyle(fontSize: ZohSizes.spaceBtwSections),),
       ),
     );
   }
