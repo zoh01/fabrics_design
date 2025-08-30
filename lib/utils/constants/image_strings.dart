@@ -18,4 +18,16 @@ class ZohImageStrings {
   static const String slider4 = "assets/images/carousel_slider/image_slider4.JPG";
   static const String slider5 = "assets/images/carousel_slider/image_slider5.JPG";
   static const String slider6 = "assets/images/carousel_slider/image_slider6.JPG";
+
+  /// Fabrics Images
+  static const String fabrics1 = "assets/images/fabrics/fabrics1.JPG";
+  static const String fabrics2 = "assets/images/fabrics/fabrics2.JPG";
+  static const String fabrics3 = "assets/images/fabrics/fabrics3.JPG";
+  static const String fabrics4 = "assets/images/fabrics/fabrics4.JPG";
+  static const String fabrics5 = "assets/images/fabrics/fabrics5.JPG";
+  static const String fabrics6 = "assets/images/fabrics/fabrics6.JPG";
+  static const String fabrics7 = "assets/images/fabrics/fabrics7.JPG";
+  static const String fabrics8 = "assets/images/fabrics/fabrics8.JPG";
+  static const String fabrics9 = "assets/images/fabrics/fabrics9.JPG";
+  static const String fabrics10 = "assets/images/fabrics/fabrics10.JPG";
 }
