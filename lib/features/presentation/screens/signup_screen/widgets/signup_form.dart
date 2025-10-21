@@ -151,7 +151,7 @@ class _SignUpFormState extends State<SignUpForm> {
             ),
           ),
           SizedBox(height: ZohSizes.spaceBtwSections),
-          SlideInRight(
+          BounceInUp(
             child: SizedBox(
               width: double.infinity,
               child: ElevatedButton(

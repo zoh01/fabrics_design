@@ -19,7 +19,7 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    Future.delayed(Duration(seconds: 8)).then((zoh) {
+    Future.delayed(Duration(seconds: 6)).then((zoh) {
       Navigator.pushReplacement(
           context, CupertinoPageRoute(builder: (ctx) => OnboardingScreen()));
     });
@@ -34,26 +34,29 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            BounceIn(
-              duration: Duration(milliseconds: 5000),
+            BounceInDown(
+              duration: Duration(milliseconds: 2000),
               child: Image(
                 image: AssetImage(ZohImageStrings.fabricsImage),
                 height: ZohHelperFunctions.screenHeight() * .4,
-                alignment: AlignmentGeometry.center,
+                fit: BoxFit.contain,
+                alignment: Alignment.center,
               ),
             ),
 
             SizedBox(height: ZohSizes.spaceBtwSections),
 
-            SlideInRight(
-              duration: Duration(milliseconds: 3000),
-              child: SizedBox(
+            FadeInUp(
+              duration: Duration(milliseconds: 2000),
+              delay: Duration(milliseconds: 1000),
+              child: Center(
                 child: DefaultTextStyle(
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontFamily: 'Roboto',
-                    color: ZohColors.darkColor,
+                    color: ZohColors.primaryColor,
                     fontSize: ZohSizes.spaceBtwZoh,
+                    fontWeight: FontWeight.bold
                   ),
                   child: AnimatedTextKit(
                     animatedTexts: [

@@ -6,10 +6,10 @@ import 'package:fabrics_design/utils/constants/colors.dart';
 import 'package:fabrics_design/utils/constants/image_strings.dart';
 import 'package:fabrics_design/utils/constants/sizes.dart';
 import 'package:fabrics_design/utils/constants/text_strings.dart';
-import 'package:fabrics_design/utils/helper_functions/helper_functions.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:animate_do/animate_do.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
@@ -21,18 +21,6 @@ class OnboardingScreen extends StatefulWidget {
 class _OnboardingScreenState extends State<OnboardingScreen> {
   late PageController _pageController;
   int _pageIndex = 0;
-
-  @override
-  void initState() {
-    _pageController = PageController(initialPage: 0);
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    _pageController.dispose();
-    super.dispose();
-  }
 
   final List<OnBoardingModels> onBoardingModel = [
     OnBoardingModels(
@@ -53,6 +41,44 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   ];
 
   @override
+  void initState() {
+    _pageController = PageController(initialPage: 0);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
+
+  void _nextPage() {
+    if (_pageIndex < onBoardingModel.length - 1) {
+      _pageController.nextPage(
+        duration: const Duration(milliseconds: 400),
+        curve: Curves.easeInOut,
+      );
+    } else {
+      _goToGetStarted();
+    }
+  }
+
+  void _skipToEnd() {
+    _pageController.animateToPage(
+      onBoardingModel.length - 1,
+      duration: const Duration(milliseconds: 400),
+      curve: Curves.easeInOut,
+    );
+  }
+
+  void _goToGetStarted() {
+    Navigator.pushReplacement(
+      context,
+      CupertinoPageRoute(builder: (_) => const GetStartedScreen()),
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
@@ -60,66 +86,102 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           padding: const EdgeInsets.symmetric(horizontal: ZohSizes.iconXs),
           child: Column(
             children: [
-              Expanded(
-                child: PageView.builder(
-                  itemCount: onBoardingModel.length,
-                  controller: _pageController,
-                  onPageChanged: (index) {
-                    setState(() {
-                      _pageIndex = index;
-                    });
-                  },
-                  itemBuilder: (context, index) => OnboardingContent(
-                    image: onBoardingModel[index].image,
-                    title: onBoardingModel[index].title,
-                    sunTitle: onBoardingModel[index].subTitle,
+              /// Skip Button (Top Right)
+              Align(
+                alignment: Alignment.centerRight,
+                child: SlideInRight(
+                  duration: Duration(milliseconds: 1200),
+                  delay: Duration(milliseconds: 500),
+                  child: TextButton(
+                    onPressed: _skipToEnd,
+                    child: Text(
+                      'Skip',
+                      style: TextStyle(
+                        color: ZohColors.primaryColor,
+                        fontWeight: FontWeight.bold,
+                        fontSize: ZohSizes.md
+                      ),
+                    ),
                   ),
                 ),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ...List.generate(
-                    onBoardingModel.length,
-                    (index) => Padding(
-                      padding: const EdgeInsets.only(left: ZohSizes.xs),
-                      child: DotIndicator(isActiveDot: index == _pageIndex),
-                    ),
-                  ),
-                ],
-              ),
 
-              SizedBox(height: ZohSizes.spaceBtwSections),
-
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushReplacement(
-                      context,
-                      CupertinoPageRoute(
-                        builder: (context) => GetStartedScreen(),
+              /// Onboarding Content
+              Expanded(
+                child: PageView.builder(
+                  controller: _pageController,
+                  itemCount: onBoardingModel.length,
+                  onPageChanged: (index) {
+                    if (mounted) {
+                      setState(() => _pageIndex = index);
+                    }
+                  },
+                  itemBuilder: (context, index) {
+                    final model = onBoardingModel[index];
+                    return AnimatedSwitcher(
+                      duration: const Duration(milliseconds: 400),
+                      transitionBuilder: (child, anim) =>
+                          FadeTransition(opacity: anim, child: child),
+                      child: OnboardingContent(
+                        key: ValueKey(index),
+                        image: model.image,
+                        title: model.title,
+                        sunTitle: model.subTitle,
+                        isFirstPage: index == 0,
                       ),
                     );
                   },
-                  style: ElevatedButton.styleFrom(
-                    elevation: 5,
-                    backgroundColor: ZohColors.primaryColor,
-                    side: BorderSide(color: ZohColors.primaryColor),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(ZohSizes.md),
-                    ),
-                  ),
-                  child: Text(
-                    'Get Started',
-                    style: GoogleFonts.merriweather(
-                      fontSize: ZohSizes.spaceBtwZoh,
-                      fontWeight: FontWeight.bold,
+                ),
+              ),
+
+              /// Dot Indicators
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: List.generate(
+                  onBoardingModel.length,
+                  (index) => Padding(
+                    padding: const EdgeInsets.only(left: ZohSizes.xs),
+                    child: FadeInUp(
+                      duration: Duration(milliseconds: 1200),
+                      delay: Duration(milliseconds: 900),
+                      child: DotIndicator(isActiveDot: index == _pageIndex),
                     ),
                   ),
                 ),
               ),
-              SizedBox(height: ZohSizes.md),
+
+              const SizedBox(height: ZohSizes.spaceBtwSections),
+
+              /// Next / Get Started Button
+              SizedBox(
+                width: double.infinity,
+                child: BounceInUp(
+                  duration: Duration(milliseconds: 1200),
+                  delay: Duration(milliseconds: 1200),
+                  child: ElevatedButton(
+                    onPressed: _nextPage,
+                    style: ElevatedButton.styleFrom(
+                      elevation: 5,
+                      backgroundColor: ZohColors.primaryColor,
+                      side: BorderSide(color: ZohColors.primaryColor),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(ZohSizes.md),
+                      ),
+                    ),
+                    child: Text(
+                      _pageIndex == onBoardingModel.length - 1
+                          ? 'Get Started'
+                          : 'Next',
+                      style: GoogleFonts.merriweather(
+                        fontSize: ZohSizes.spaceBtwZoh,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+
+              const SizedBox(height: ZohSizes.md),
             ],
           ),
         ),

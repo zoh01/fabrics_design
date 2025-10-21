@@ -163,7 +163,7 @@ class _LoginFormState extends State<LoginForm> {
             ],
           ),
           SizedBox(height: ZohSizes.spaceBtwSections),
-          SlideInLeft(
+          BounceInUp(
             child: SizedBox(
               width: double.infinity,
               child: ElevatedButton(

@@ -15,73 +15,77 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(ZohSizes.defaultSpace),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              BounceIn(
-                child: Text(
-                  'Login Here',
-                  style: GoogleFonts.staatliches(
-                    fontSize: ZohSizes.defaultSpace * 1.4,
-                    fontWeight: FontWeight.bold,
-                    color: ZohColors.primaryColor,
+        child: Center(
+          child: SingleChildScrollView(
+            padding: EdgeInsets.all(ZohSizes.defaultSpace),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                BounceInDown(
+                  child: Text(
+                    'Login Here',
+                    style: GoogleFonts.staatliches(
+                      fontSize: ZohSizes.defaultSpace * 1.4,
+                      fontWeight: FontWeight.bold,
+                      color: ZohColors.primaryColor,
+                    ),
+                    textAlign: TextAlign.center,
                   ),
-                  textAlign: TextAlign.center,
                 ),
-              ),
-              SizedBox(height: ZohSizes.sm),
-              BounceIn(
-                child: Text(
-                  ZohTextString.welcome,
-                  style: GoogleFonts.saira(
-                    fontSize: ZohSizes.defaultSpace,
-                    fontWeight: FontWeight.bold,
-                    color: ZohColors.darkColor,
+                SizedBox(height: ZohSizes.sm),
+                BounceInDown(
+                  child: Text(
+                    ZohTextString.welcome,
+                    style: GoogleFonts.saira(
+                      fontSize: ZohSizes.defaultSpace,
+                      fontWeight: FontWeight.bold,
+                      color: ZohColors.darkColor,
+                    ),
+                    textAlign: TextAlign.center,
                   ),
-                  textAlign: TextAlign.center,
                 ),
-              ),
 
-              SizedBox(height: ZohSizes.spaceBtwSections),
+                SizedBox(height: ZohSizes.spaceBtwSections),
 
-              LoginForm(),
-              SizedBox(height: ZohSizes.spaceBtwZoh),
-              SlideInRight(
-                child: SizedBox(
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.pushReplacement(
-                        context,
-                        CupertinoPageRoute(
-                          builder: (context) => SignupScreen(),
+                LoginForm(),
+                SizedBox(height: ZohSizes.spaceBtwZoh),
+                BounceInUp(
+                  child: SizedBox(
+                    width: double.infinity,
+                    child: OutlinedButton(
+                      onPressed: () {
+                        Navigator.pushReplacement(
+                          context,
+                          CupertinoPageRoute(
+                            builder: (context) => SignupScreen(),
+                          ),
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        elevation: 4,
+                        foregroundColor: ZohColors.primaryColor,
+                        backgroundColor: Colors.transparent,
+                        side: BorderSide(color: Colors.transparent),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadiusGeometry.circular(
+                            ZohSizes.md,
+                          ),
                         ),
-                      );
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.transparent,
-                      side: BorderSide(color: Colors.transparent),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadiusGeometry.circular(
-                          ZohSizes.md,
+                      ),
+                      child: Text(
+                        'Create an account',
+                        style: TextStyle(
+                          fontFamily: 'Roboto',
+                          fontSize: ZohSizes.spaceBtwZoh,
+                          fontWeight: FontWeight.bold,
+                          color: ZohColors.darkColor,
                         ),
                       ),
                     ),
-                    child: Text(
-                      'Create an account',
-                      style: TextStyle(
-                        fontFamily: 'Roboto',
-                        fontSize: ZohSizes.spaceBtwZoh,
-                        fontWeight: FontWeight.bold,
-                        color: ZohColors.darkColor,
-                      ),
-                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

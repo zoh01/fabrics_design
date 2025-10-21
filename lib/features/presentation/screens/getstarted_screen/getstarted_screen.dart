@@ -32,8 +32,9 @@ class GetStartedScreen extends StatelessWidget {
                 ),
               ),
               Spacer(),
-              SlideInLeft(
-                duration: Duration(milliseconds: 2000),
+              FadeInUp(
+                duration: Duration(milliseconds: 1200),
+                delay: Duration(milliseconds: 400),
                 child: Text(
                   ZohTextString.discover,
                   style: GoogleFonts.oswald(
@@ -45,8 +46,9 @@ class GetStartedScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(height: ZohSizes.md),
-              SlideInRight(
-                duration: Duration(milliseconds: 2000),
+              FadeInUp(
+                duration: Duration(milliseconds: 1200),
+                delay: Duration(milliseconds: 600),
                 child: Text(
                   ZohTextString.explore,
                   style: TextStyle(
@@ -65,14 +67,13 @@ class GetStartedScreen extends StatelessWidget {
                 children: [
                   Expanded(
                     child: BounceInUp(
-                      duration: Duration(milliseconds: 2000),
+                      duration: Duration(milliseconds: 1200),
+                      delay: Duration(milliseconds: 800),
                       child: ElevatedButton(
                         onPressed: () {
                           Navigator.pushReplacement(
                             context,
-                            CupertinoPageRoute(
-                              builder: (context) => LoginScreen(),
-                            ),
+                            ZohHelperFunctions.fadeZoomTransition(LoginScreen()),
                           );
                         },
                         style: ElevatedButton.styleFrom(
@@ -80,24 +81,34 @@ class GetStartedScreen extends StatelessWidget {
                           backgroundColor: ZohColors.primaryColor,
                           side: BorderSide(color: ZohColors.primaryColor),
                         ),
-                        child: Text('Login', style: GoogleFonts.viga(
-                          fontSize: ZohSizes.spaceBtwZoh,
-                          color: Colors.white,
-                        ),),
+                        child: Text(
+                          'Login',
+                          style: GoogleFonts.viga(
+                            fontSize: ZohSizes.spaceBtwZoh,
+                            color: Colors.white,
+                          ),
+                        ),
                       ),
+
                     ),
                   ),
                   SizedBox(width: ZohSizes.sm),
                   Expanded(
                     child: BounceInUp(
-                      duration: Duration(milliseconds: 2000),
-                      child: ElevatedButton(
+                      duration: Duration(milliseconds: 1200),
+                      delay: Duration(milliseconds: 800),
+                      child: OutlinedButton(
                         onPressed: () {
-                          Navigator.pushReplacement(context, CupertinoPageRoute(builder: (context) => SignupScreen()));
+                          Navigator.pushReplacement(
+                            context,
+                            ZohHelperFunctions.fadeZoomTransition(SignupScreen()),
+                          );
                         },
                         style: ElevatedButton.styleFrom(
+                          elevation: 4,
+                          overlayColor: ZohColors.primaryColor,
                           backgroundColor: Colors.transparent,
-                          side: BorderSide(color: Colors.transparent),
+                          side: BorderSide(color: Colors.transparent,),
                         ),
                         child: Text(
                           'Register',
@@ -107,6 +118,7 @@ class GetStartedScreen extends StatelessWidget {
                           ),
                         ),
                       ),
+
                     ),
                   ),
                 ],
