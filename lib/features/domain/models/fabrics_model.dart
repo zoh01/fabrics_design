@@ -1,5 +1,7 @@
 import 'package:fabrics_design/utils/constants/image_strings.dart';
 
+import '../../../utils/constants/image_strings.dart';
+
 class FabricsModel {
   final String image, name, discount;
   final double price;
