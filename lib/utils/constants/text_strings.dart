@@ -1,6 +1,6 @@
 /// This class contain the App text in String Format
 class ZohTextString {
-  static const splashTitle = "Your One Stop Clothing Solution...";
+  static const splashTitle = "Fashion at Your Fingertips...";
 
   // Onboarding Text
   static const onBoardingTitle1 = "Choose Your Fabrics";

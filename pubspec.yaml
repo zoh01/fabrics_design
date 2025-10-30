@@ -39,6 +39,7 @@ flutter:
     - assets/icons/
     - assets/images/
     - assets/images/fabrics/
+    - assets/images/category/
     - assets/images/carousel_slider/
     - assets/images/onboarding_images/
 

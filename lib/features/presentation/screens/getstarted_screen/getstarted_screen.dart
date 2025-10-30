@@ -25,6 +25,7 @@ class GetStartedScreen extends StatelessWidget {
               Spacer(),
               BounceInDown(
                 duration: Duration(milliseconds: 2000),
+                delay: Duration(milliseconds: 500),
                 child: Image(
                   image: AssetImage(ZohImageStrings.fabricsImage),
                   height: ZohHelperFunctions.screenHeight() * .3,

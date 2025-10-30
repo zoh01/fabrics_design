@@ -55,7 +55,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   style: TextStyle(
                     fontFamily: 'Roboto',
                     color: ZohColors.primaryColor,
-                    fontSize: ZohSizes.spaceBtwZoh,
+                    fontSize: ZohSizes.defaultSpace,
                     fontWeight: FontWeight.bold
                   ),
                   child: AnimatedTextKit(
