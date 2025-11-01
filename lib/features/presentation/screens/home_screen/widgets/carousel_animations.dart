@@ -1,4 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:fabrics_design/utils/helper_functions/helper_functions.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../utils/constants/image_strings.dart';
@@ -31,6 +32,8 @@ class _CarouselAnimationsState extends State<CarouselAnimations> {
       children: [
         CarouselSlider(
           options: CarouselOptions(
+            height: ZohHelperFunctions.screenHeight() * .2,
+            viewportFraction: .85,
             autoPlay: true,
             autoPlayCurve: Curves.fastOutSlowIn,
             autoPlayAnimationDuration: Duration(milliseconds: 1000),

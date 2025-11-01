@@ -1,14 +1,13 @@
+import 'package:fabrics_design/features/domain/common/containers/header_container.dart';
+import 'package:fabrics_design/features/domain/common/texts/section_heading.dart';
+import 'package:fabrics_design/features/domain/models/category_model.dart';
 import 'package:fabrics_design/features/domain/models/fabrics_model.dart';
 import 'package:fabrics_design/features/presentation/screens/home_screen/widgets/app_bar_container.dart';
 import 'package:fabrics_design/features/presentation/screens/home_screen/widgets/carousel_animations.dart';
 import 'package:fabrics_design/features/presentation/screens/home_screen/widgets/fabrics_container.dart';
 import 'package:fabrics_design/features/presentation/screens/home_screen/widgets/search_container.dart';
-import 'package:fabrics_design/utils/constants/colors.dart';
-import 'package:fabrics_design/utils/constants/image_strings.dart';
 import 'package:fabrics_design/utils/constants/sizes.dart';
-import 'package:fabrics_design/utils/helper_functions/helper_functions.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -21,61 +20,70 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(ZohSizes.md),
-            child: Column(
-              children: [
-                // Bar Container
-                AppBarContainer(),
-                SizedBox(height: ZohSizes.md),
-                // Search Container
-                SearchContainer(),
-                SizedBox(height: ZohSizes.spaceBtwSections),
-                // Carousel Container
-                CarouselAnimations(),
-                SizedBox(height: ZohSizes.spaceBtwSections),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      backgroundColor: Colors.grey.shade300,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            ZohPrimaryHeaderContainer(
+              child: Padding(
+                padding: EdgeInsets.all(ZohSizes.md),
+                child: Column(
                   children: [
-                    Text(
-                      'FABRICS FOR YOU',
-                      style: GoogleFonts.sora(
-                        fontWeight: FontWeight.bold,
-                        fontSize: ZohSizes.spaceBtwZoh,
-                      ),
+                    AppBarContainer(),
+                    SizedBox(height: ZohSizes.md),
+                    SearchContainer(),
+                    SizedBox(height: ZohSizes.md),
+                    ZSectionHeading(
+                      title: 'POPULAR CATEGORIES',
+                      showActionButton: false,
+                      textColor: Colors.white,
                     ),
-                    TextButton(
-                      onPressed: () {},
-                      child: Text(
-                        'View All',
-                        style: TextStyle(
-                          color: ZohColors.secondaryColor,
-                          fontSize: ZohSizes.md,
+                    SizedBox(height: ZohSizes.sm,),
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      padding: EdgeInsets.only(bottom: ZohSizes.md),
+                      child: Row(
+                        children: List.generate(
+                          fCategoryModel.length,
+                          (index) => InkWell(
+                            child: Column(
+                              children: [
+                                Container(
+                                  padding: EdgeInsets.symmetric(horizontal: ZohSizes.sm),
+                                  child: Container(
+                                    width: 70,
+                                    height: 70,
+                                    decoration: BoxDecoration(
+                                      color: Colors.white.withOpacity(.7),
+                                      borderRadius: const BorderRadius.all(
+                                        Radius.circular(ZohSizes.md),
+                                      ),
+                                    ),
+                                    child: Center(
+                                      child: Image(
+                                        image: AssetImage(
+                                          fCategoryModel[index].image,
+                                        ),
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(height: ZohSizes.sm),
+                                Text(fCategoryModel[index].name),
+                              ],
+                            ),
+                          ),
                         ),
                       ),
                     ),
                   ],
                 ),
-                SizedBox(height: ZohSizes.md),
-
-                GridView.builder(
-                  shrinkWrap: true,
-                  itemCount: fabricsModel.length,
-                  physics: NeverScrollableScrollPhysics(),
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    mainAxisSpacing: ZohSizes.defaultSpace,
-                    crossAxisSpacing: ZohSizes.defaultSpace,
-                    mainAxisExtent: ZohHelperFunctions.screenHeight() * .325
-                  ),
-                  itemBuilder: _buildFabrics,
-                ),
-                SizedBox(height: ZohSizes.spaceBtwSections,),
-              ],
+              ),
             ),
-          ),
+            SizedBox(height: ZohSizes.xs,),
+            CarouselAnimations(),
+          ],
         ),
       ),
     );

@@ -16,7 +16,7 @@ class SearchContainer extends StatelessWidget {
       padding: EdgeInsets.all(ZohSizes.sm),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(ZohSizes.md),
-        color: ZohColors.primaryColor.withOpacity(.1),
+        color: ZohColors.secondaryColor.withOpacity(.2),
       ),
       child: SizedBox(
         width: ZohDeviceUtils.getScreenWidth() * .9,

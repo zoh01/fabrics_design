@@ -11,9 +11,9 @@ class ZohImageStrings {
   static const String american = "assets/images/category/american.png";
   static const String italian = "assets/images/category/italian.png";
   static const String jks = "assets/images/category/jks.png";
-  static const lace = "assets/images/category/lace.png";
-  static const wool = "assets/images/category/wool.png";
-  static const black = "assets/images/category/black_mat.png";
+  static const String lace = "assets/images/category/lace.png";
+  static const String wool = "assets/images/category/wool.png";
+  static const String black = "assets/images/category/black_mat.png";
 
   /// Icons Images
   static const String excited = "assets/icons/excited_icon.png";
