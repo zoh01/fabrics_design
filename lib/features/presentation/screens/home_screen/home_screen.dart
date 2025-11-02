@@ -38,7 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       showActionButton: false,
                       textColor: Colors.white,
                     ),
-                    SizedBox(height: ZohSizes.sm,),
+                    SizedBox(height: ZohSizes.sm),
                     SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
                       padding: EdgeInsets.only(bottom: ZohSizes.md),
@@ -49,7 +49,9 @@ class _HomeScreenState extends State<HomeScreen> {
                             child: Column(
                               children: [
                                 Container(
-                                  padding: EdgeInsets.symmetric(horizontal: ZohSizes.sm),
+                                  padding: EdgeInsets.symmetric(
+                                    horizontal: ZohSizes.sm,
+                                  ),
                                   child: Container(
                                     width: 70,
                                     height: 70,
@@ -81,7 +83,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ),
-            SizedBox(height: ZohSizes.xs,),
+            SizedBox(height: ZohSizes.xs),
             CarouselAnimations(),
           ],
         ),
