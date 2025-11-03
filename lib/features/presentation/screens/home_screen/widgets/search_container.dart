@@ -13,7 +13,7 @@ class SearchContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(ZohSizes.sm),
+      padding: EdgeInsets.all(ZohSizes.xs),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(ZohSizes.md),
         color: ZohColors.secondaryColor.withOpacity(.2),
@@ -26,8 +26,9 @@ class SearchContainer extends StatelessWidget {
               Icons.search,
               color: ZohColors.darkColor,
               size: ZohSizes.spaceBtwSections,
+
             ),
-            SizedBox(width: ZohSizes.xs),
+            SizedBox(width: ZohSizes.sm),
             Expanded(
               child: TextField(
                 showCursor: true,

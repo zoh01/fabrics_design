@@ -1,60 +1,172 @@
 import 'package:fabrics_design/utils/constants/image_strings.dart';
-
-import '../../../utils/constants/image_strings.dart';
+import 'package:flutter/material.dart';
 
 class FabricsModel {
-  final String image, name, discount;
-  final double price;
+  final String name, image, description, category;
+  final double rating;
+  final int review, price;
+  List<Color> fColor;
+  bool isCheck;
 
   FabricsModel({
-    required this.image,
     required this.name,
-    required this.discount,
+    required this.image,
+    required this.description,
+    required this.category,
+    required this.rating,
+    required this.review,
     required this.price,
+    required this.fColor,
+    required this.isCheck,
   });
 }
 
 List<FabricsModel> fabricsModel = [
+  //id:1
   FabricsModel(
-    image: ZohImageStrings.fabrics3,
-    name: 'American Wool',
-    discount: "20",
-    price: 13,
-  ),
-  FabricsModel(
+    name: "8 Star",
     image: ZohImageStrings.fabrics1,
-    name: 'Italian Wool',
-    discount: "15",
-    price: 13,
+    description: "",
+    category: "Cashmere",
+    rating: 4.9,
+    review: 312,
+    price: 8000,
+    fColor: [
+      Colors.black,
+      Colors.blue,
+      Colors.green
+    ],
+    isCheck: true,
   ),
+  //id:2
   FabricsModel(
-    image: ZohImageStrings.fabrics8,
-    name: 'German Wool',
-    discount: "15",
-    price: 13,
+    name: "7 Star",
+    image: ZohImageStrings.fabrics2,
+    description: "",
+    category: "American",
+    rating: 4.9,
+    review: 123,
+    price: 7000,
+    fColor: [
+      Colors.black,
+      Colors.blue,
+      Colors.green
+    ],
+    isCheck: true,
   ),
+  //id:3
   FabricsModel(
-    image: ZohImageStrings.fabrics4,
-    name: 'American Wool',
-    discount: "20",
-    price: 13,
-  ),
-  FabricsModel(
-    image: ZohImageStrings.fabrics5,
-    name: 'Swiss Voile',
-    discount: "15",
-    price: 13,
-  ),
-  FabricsModel(
-    image: ZohImageStrings.fabrics6,
-    name: 'Italian Wool',
-    discount: "15",
-    price: 14,
-  ),
-  FabricsModel(
+    name: "American",
     image: ZohImageStrings.fabrics3,
-    name: 'German Wool',
-    discount: "15",
-    price: 16,
+    description: "",
+    category: "Italian",
+    rating: 4.7,
+    review: 263,
+    price: 9500,
+    fColor: [
+      Colors.black,
+      Colors.blue,
+      Colors.green
+    ],
+    isCheck: true,
+  ),
+  //id:4
+  FabricsModel(
+    name: "German Wool",
+    image: ZohImageStrings.fabrics4,
+    description: "",
+    category: "Wool",
+    rating: 4.8,
+    review: 208,
+    price: 8000,
+    fColor: [
+      Colors.black,
+      Colors.blue,
+      Colors.green
+    ],
+    isCheck: true,
+  ),
+  //id:5
+  FabricsModel(
+    name: "Cashmere",
+    image: ZohImageStrings.fabrics5,
+    description: "",
+    category: "Cashmere",
+    rating: 4.8,
+    review: 173,
+    price: 9000,
+    fColor: [
+      Colors.black,
+      Colors.blue,
+      Colors.green
+    ],
+    isCheck: true,
+  ),
+  //id:6
+  FabricsModel(
+    name: "American",
+    image: ZohImageStrings.fabrics6,
+    description: "",
+    category: "American",
+    rating: 4.6,
+    review: 184,
+    price: 12000,
+    fColor: [
+      Colors.black,
+      Colors.blue,
+      Colors.green
+    ],
+    isCheck: true,
+  ),
+  //id:7
+  FabricsModel(
+    name: "10 Star",
+    image: ZohImageStrings.fabrics7,
+    description: "",
+    category: "Italian",
+    rating: 4.9,
+    review: 192,
+    price: 20000,
+    fColor: [
+      Colors.black,
+      Colors.blue,
+      Colors.green
+    ],
+    isCheck: true,
+  ),
+  //id:8
+  FabricsModel(
+    name: "American",
+    image: ZohImageStrings.fabrics8,
+    description: "",
+    category: "Netlace",
+    rating: 4.9,
+    review: 102,
+    price: 5000,
+    fColor: [
+      Colors.black,
+      Colors.blue,
+      Colors.green
+    ],
+    isCheck: true,
+  ),
+  //id:9
+  FabricsModel(
+    name: "Cashmere",
+    image: ZohImageStrings.fabrics9,
+    description: "",
+    category: "Netlace",
+    rating: 4.6,
+    review: 123,
+    price: 9000,
+    fColor: [
+      Colors.black,
+      Colors.blue,
+      Colors.green
+    ],
+    isCheck: true,
   ),
 ];
+
+const myDesc1 = "Soft and luxurious fabrics";
+const myDesc2 = " .Crafted from premium cutton for maximum comfort";
