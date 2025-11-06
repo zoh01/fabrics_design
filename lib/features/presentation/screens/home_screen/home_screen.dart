@@ -1,5 +1,6 @@
 import 'package:fabrics_design/features/domain/common/containers/header_container.dart';
 import 'package:fabrics_design/features/domain/common/fabrics_card/fabrics_card.dart';
+import 'package:fabrics_design/features/domain/common/fabrics_details/fabrics_details.dart';
 import 'package:fabrics_design/features/domain/common/texts/section_heading.dart';
 import 'package:fabrics_design/features/domain/models/category_model.dart';
 import 'package:fabrics_design/features/domain/models/fabrics_model.dart';
@@ -8,6 +9,7 @@ import 'package:fabrics_design/features/presentation/screens/home_screen/widgets
 import 'package:fabrics_design/features/presentation/screens/home_screen/widgets/search_container.dart';
 import 'package:fabrics_design/utils/constants/colors.dart';
 import 'package:fabrics_design/utils/constants/sizes.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -92,8 +94,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                     fCategoryModel[index].name,
                                     style: GoogleFonts.inter(
                                       fontWeight: FontWeight.bold,
-                                      color: ZohColors.darkColor
-                                    )
+                                      color: ZohColors.darkColor,
+                                    ),
                                   ),
                                 ],
                               ),
@@ -116,21 +118,28 @@ class _HomeScreenState extends State<HomeScreen> {
                 showActionButton: true,
               ),
             ),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              padding: EdgeInsets.only(bottom: ZohSizes.md),
-              child: Row(
-                children: List.generate(fabricsModel.length, (index) {
-                  final fabricsItems = fabricsModel[index];
-                  return Padding(
-                    padding: index == 0
-                        ? EdgeInsets.symmetric(horizontal: ZohSizes.spaceBtwZoh)
-                        : EdgeInsets.only(right: ZohSizes.spaceBtwZoh),
-                    child: InkWell(
-                      child: FabricsCard(fabricsItems: fabricsItems),
-                    ),
+            GridView.builder(
+              itemCount: fabricsModel.length,
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+              padding: EdgeInsets.symmetric(
+                horizontal: ZohSizes.sm,
+                vertical: ZohSizes.sm,
+              ),
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                childAspectRatio: 0.62,
+                mainAxisSpacing: ZohSizes.iconXs,
+                crossAxisSpacing: ZohSizes.md,
+              ),
+              itemBuilder: (context, index) => InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    CupertinoPageRoute(builder: (context) => FabricsDetails()),
                   );
-                }),
+                },
+                child: FabricsCard(fabricsItems: fabricsModel[index]),
               ),
             ),
           ],
@@ -138,14 +147,4 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
-
-  // Widget _buildFabrics(BuildContext context, int index) {
-  //   FabricsModel fabrics = fabricsModel[index];
-  //   return FabricsContainer(
-  //     image: fabrics.image,
-  //     name: fabrics.name,
-  //     discount: fabrics.discount,
-  //     price: fabrics.price,
-  //   );
-  // }
 }

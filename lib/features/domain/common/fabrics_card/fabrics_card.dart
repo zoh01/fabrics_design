@@ -20,7 +20,7 @@ class _FabricsCardState extends State<FabricsCard> {
   Widget build(BuildContext context) {
     final fabrics = widget.fabricsItems;
     return Container(
-      padding: EdgeInsets.all(ZohSizes.xs),
+      padding: EdgeInsets.only(top: ZohSizes.sm),
       margin: EdgeInsets.only(top: ZohSizes.xs),
       decoration: BoxDecoration(
         boxShadow: [
@@ -75,7 +75,7 @@ class _FabricsCardState extends State<FabricsCard> {
                   child: CircleAvatar(
                     radius: ZohSizes.md,
                     backgroundColor: ZohColors.darkColor,
-                    child: Icon(Icons.favorite_border, color: Colors.white,),
+                    child: Icon(Icons.favorite_border, color: Colors.white),
                   ),
                 ),
               ],
@@ -90,7 +90,20 @@ class _FabricsCardState extends State<FabricsCard> {
               color: ZohColors.black,
             ),
           ),
-          SizedBox(height: ZohSizes.md),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                Icons.star,
+                color: ZohColors.secondaryColor,
+                size: ZohSizes.spaceBtwZoh,
+              ),
+              Text("(${fabrics.rating.toString()})", style: TextStyle(fontWeight: FontWeight.bold),),
+              SizedBox(width: ZohSizes.sm,),
+              Text("${fabrics.review} reviews")
+            ],
+          ),
+          SizedBox(height: ZohSizes.xs),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
