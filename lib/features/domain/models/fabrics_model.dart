@@ -24,7 +24,7 @@ class FabricsModel {
 List<FabricsModel> fabricsModel = [
   //id:1
   FabricsModel(
-    name: "8 Star",
+    name: "Italian Wool",
     image: ZohImageStrings.fabrics1,
     description: "",
     category: "Cashmere",
@@ -136,7 +136,7 @@ List<FabricsModel> fabricsModel = [
   ),
   //id:8
   FabricsModel(
-    name: "American",
+    name: "American Wool",
     image: ZohImageStrings.fabrics8,
     description: "",
     category: "Netlace",

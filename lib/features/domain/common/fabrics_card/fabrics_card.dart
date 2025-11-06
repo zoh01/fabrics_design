@@ -25,7 +25,7 @@ class _FabricsCardState extends State<FabricsCard> {
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
-            color: Colors.black,
+            color: Colors.black87,
             blurRadius: 4,
             offset: const Offset(2, 3),
           ),
@@ -95,7 +95,7 @@ class _FabricsCardState extends State<FabricsCard> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "#${fabrics.price}00",
+                "#${fabrics.price}.00",
                 style: GoogleFonts.sora(
                   fontSize: ZohSizes.spaceBtwZoh,
                   fontWeight: FontWeight.bold,
