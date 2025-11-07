@@ -1,6 +1,5 @@
 import 'package:fabrics_design/features/domain/common/containers/header_container.dart';
 import 'package:fabrics_design/features/domain/common/fabrics_card/fabrics_card.dart';
-import 'package:fabrics_design/features/domain/common/fabrics_details/fabrics_details.dart';
 import 'package:fabrics_design/features/domain/common/texts/section_heading.dart';
 import 'package:fabrics_design/features/domain/models/category_model.dart';
 import 'package:fabrics_design/features/domain/models/fabrics_model.dart';
@@ -9,7 +8,6 @@ import 'package:fabrics_design/features/presentation/screens/home_screen/widgets
 import 'package:fabrics_design/features/presentation/screens/home_screen/widgets/search_container.dart';
 import 'package:fabrics_design/utils/constants/colors.dart';
 import 'package:fabrics_design/utils/constants/sizes.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -132,15 +130,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 mainAxisSpacing: ZohSizes.iconXs,
                 crossAxisSpacing: ZohSizes.md,
               ),
-              itemBuilder: (context, index) => InkWell(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    CupertinoPageRoute(builder: (context) => FabricsDetails()),
-                  );
-                },
-                child: FabricsCard(fabricsItems: fabricsModel[index]),
-              ),
+              itemBuilder: (context, index) =>
+                  FabricsCard(fabricsItems: fabricsModel[index]),
             ),
           ],
         ),

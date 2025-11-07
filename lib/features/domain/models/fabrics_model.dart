@@ -2,7 +2,7 @@ import 'package:fabrics_design/utils/constants/image_strings.dart';
 import 'package:flutter/material.dart';
 
 class FabricsModel {
-  final String name, image, description, category;
+  final String name, image, description, category, discount;
   final double rating;
   final int review, price;
   List<Color> fColor;
@@ -13,6 +13,7 @@ class FabricsModel {
     required this.image,
     required this.description,
     required this.category,
+    required this.discount,
     required this.rating,
     required this.review,
     required this.price,
@@ -31,12 +32,9 @@ List<FabricsModel> fabricsModel = [
     rating: 4.9,
     review: 312,
     price: 8000,
-    fColor: [
-      Colors.black,
-      Colors.blue,
-      Colors.green
-    ],
+    fColor: [Colors.black, Colors.blue, Colors.green],
     isCheck: true,
+    discount: '16',
   ),
   //id:2
   FabricsModel(
@@ -47,12 +45,9 @@ List<FabricsModel> fabricsModel = [
     rating: 4.9,
     review: 123,
     price: 7000,
-    fColor: [
-      Colors.black,
-      Colors.blue,
-      Colors.green
-    ],
+    fColor: [Colors.black, Colors.blue, Colors.green],
     isCheck: true,
+    discount: '29',
   ),
   //id:3
   FabricsModel(
@@ -63,12 +58,9 @@ List<FabricsModel> fabricsModel = [
     rating: 4.7,
     review: 263,
     price: 9500,
-    fColor: [
-      Colors.black,
-      Colors.blue,
-      Colors.green
-    ],
+    fColor: [Colors.black, Colors.blue, Colors.green],
     isCheck: true,
+    discount: '25',
   ),
   //id:4
   FabricsModel(
@@ -79,12 +71,9 @@ List<FabricsModel> fabricsModel = [
     rating: 4.8,
     review: 208,
     price: 8000,
-    fColor: [
-      Colors.black,
-      Colors.blue,
-      Colors.green
-    ],
+    fColor: [Colors.black, Colors.blue, Colors.green],
     isCheck: true,
+    discount: '15',
   ),
   //id:5
   FabricsModel(
@@ -95,12 +84,9 @@ List<FabricsModel> fabricsModel = [
     rating: 4.8,
     review: 173,
     price: 9000,
-    fColor: [
-      Colors.black,
-      Colors.blue,
-      Colors.green
-    ],
+    fColor: [Colors.black, Colors.blue, Colors.green],
     isCheck: true,
+    discount: '26',
   ),
   //id:6
   FabricsModel(
@@ -111,12 +97,9 @@ List<FabricsModel> fabricsModel = [
     rating: 4.6,
     review: 184,
     price: 12000,
-    fColor: [
-      Colors.black,
-      Colors.blue,
-      Colors.green
-    ],
+    fColor: [Colors.black, Colors.blue, Colors.green],
     isCheck: true,
+    discount: '20',
   ),
   //id:7
   FabricsModel(
@@ -127,12 +110,9 @@ List<FabricsModel> fabricsModel = [
     rating: 4.9,
     review: 192,
     price: 20000,
-    fColor: [
-      Colors.black,
-      Colors.blue,
-      Colors.green
-    ],
+    fColor: [Colors.black, Colors.blue, Colors.green],
     isCheck: true,
+    discount: '15',
   ),
   //id:8
   FabricsModel(
@@ -143,12 +123,9 @@ List<FabricsModel> fabricsModel = [
     rating: 4.9,
     review: 102,
     price: 5000,
-    fColor: [
-      Colors.black,
-      Colors.blue,
-      Colors.green
-    ],
+    fColor: [Colors.black, Colors.blue, Colors.green],
     isCheck: true,
+    discount: '20',
   ),
   //id:9
   FabricsModel(
@@ -159,12 +136,9 @@ List<FabricsModel> fabricsModel = [
     rating: 4.6,
     review: 123,
     price: 9000,
-    fColor: [
-      Colors.black,
-      Colors.blue,
-      Colors.green
-    ],
+    fColor: [Colors.black, Colors.blue, Colors.green],
     isCheck: true,
+    discount: '14',
   ),
 ];
 

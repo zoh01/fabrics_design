@@ -1,4 +1,5 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:fabrics_design/features/presentation/screens/home_screen/home_screen.dart';
 import 'package:fabrics_design/features/presentation/screens/onboarding_screen/onboarding_screen.dart';
 import 'package:fabrics_design/utils/constants/colors.dart';
 import 'package:fabrics_design/utils/constants/image_strings.dart';
