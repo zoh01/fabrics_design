@@ -20,6 +20,8 @@ class FabricsDetails extends StatefulWidget {
 
 class _FabricsDetailsState extends State<FabricsDetails> {
   int currentIndex = 0;
+  int selectedColorIndex = 1;
+  int selectedSizeIndex = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -146,14 +148,15 @@ class _FabricsDetailsState extends State<FabricsDetails> {
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
-                            SizedBox(width: ZohSizes.sm,),
+                            SizedBox(width: ZohSizes.sm),
                             // Original price with strikethrough
                             Text(
                               "₦${fabric.price.toStringAsFixed(2)}",
                               style: const TextStyle(
                                 fontSize: 18,
                                 color: Colors.grey,
-                                decoration: TextDecoration.lineThrough, // strikethrough
+                                decoration:
+                                    TextDecoration.lineThrough, // strikethrough
                               ),
                             ),
                           ],
@@ -163,7 +166,11 @@ class _FabricsDetailsState extends State<FabricsDetails> {
                     CircleAvatar(
                       radius: ZohSizes.defaultSpace,
                       backgroundColor: ZohColors.darkColor,
-                      child: Icon(Icons.favorite_border, color: Colors.white, size: ZohSizes.spaceBtwSections,),
+                      child: Icon(
+                        Icons.favorite_border,
+                        color: Colors.white,
+                        size: ZohSizes.spaceBtwSections,
+                      ),
                     ),
                   ],
                 ),
@@ -174,7 +181,53 @@ class _FabricsDetailsState extends State<FabricsDetails> {
                   style: TextStyle(fontSize: 15, height: 1.5),
                 ),
                 const SizedBox(height: ZohSizes.lg),
-                // 🛒 Add to Cart Button
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      width: ZohHelperFunctions.screenWidth() * .5,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("Color"),
+                          SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                              children: fabric.fColor.asMap().entries.map((
+                                entry,
+                              ) {
+                                final int index = entry.key;
+                                final color = entry.value;
+                                return Padding(
+                                  padding: EdgeInsets.only(top: 10, right: 10),
+                                  child: CircleAvatar(
+                                    radius: ZohSizes.md,
+                                    backgroundColor: color,
+                                    child: InkWell(
+                                      onTap: () {
+                                        setState(() {
+                                          selectedColorIndex = index;
+                                        });
+                                      },
+                                      child: Icon(
+                                        Icons.check,
+                                        color: selectedColorIndex == index
+                                            ? Colors.white
+                                            : Colors.transparent,
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              }).toList(),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: ZohSizes.sm,),
+                // Add to Cart Button
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton.icon(
