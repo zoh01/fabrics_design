@@ -1,4 +1,5 @@
 import 'package:fabrics_design/features/domain/models/fabrics_model.dart';
+import 'package:fabrics_design/utils/constants/sizes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -8,6 +9,7 @@ import '../fabrics_details/fabrics_details.dart';
 
 class FabricsCard extends StatefulWidget {
   final FabricsModel fabricsItems;
+
   const FabricsCard({super.key, required this.fabricsItems});
 
   @override
@@ -56,7 +58,9 @@ class _FabricsCardState extends State<FabricsCard> {
             Stack(
               children: [
                 ClipRRect(
-                  borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
+                  borderRadius: const BorderRadius.vertical(
+                    top: Radius.circular(20),
+                  ),
                   child: Image.asset(
                     fabrics.image,
                     width: double.infinity,
@@ -70,7 +74,10 @@ class _FabricsCardState extends State<FabricsCard> {
                   top: 10,
                   left: 10,
                   child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 10,
+                      vertical: 5,
+                    ),
                     decoration: BoxDecoration(
                       color: ZohColors.secondaryColor,
                       borderRadius: BorderRadius.circular(12),
@@ -95,7 +102,9 @@ class _FabricsCardState extends State<FabricsCard> {
                       backgroundColor: Colors.grey,
                       child: Icon(
                         isFavorite ? Icons.favorite : Icons.favorite_border,
-                        color: isFavorite ? Colors.redAccent : ZohColors.darkColor,
+                        color: isFavorite
+                            ? Colors.redAccent
+                            : ZohColors.darkColor,
                       ),
                     ),
                   ),
@@ -105,7 +114,7 @@ class _FabricsCardState extends State<FabricsCard> {
 
             // 🧵 Fabric Info
             Padding(
-              padding: const EdgeInsets.all(12.0),
+              padding: const EdgeInsets.all(10.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -122,7 +131,11 @@ class _FabricsCardState extends State<FabricsCard> {
                   const SizedBox(height: 4),
                   Row(
                     children: [
-                      Icon(Icons.star, color: ZohColors.secondaryColor, size: 18),
+                      Icon(
+                        Icons.star,
+                        color: ZohColors.secondaryColor,
+                        size: 18,
+                      ),
                       const SizedBox(width: 3),
                       Text(
                         fabrics.rating.toStringAsFixed(1),
@@ -155,11 +168,16 @@ class _FabricsCardState extends State<FabricsCard> {
                       Container(
                         decoration: BoxDecoration(
                           color: ZohColors.primaryColor,
-                          borderRadius: BorderRadius.circular(14),
+                          borderRadius: BorderRadius.circular(ZohSizes.iconXs),
                         ),
                         child: const Padding(
                           padding: EdgeInsets.all(10),
-                          child: Icon(Icons.add, color: Colors.white, size: 20),
+                          child: Icon(
+                            Icons.add,
+                            color: Colors.white,
+                            size: ZohSizes.spaceBtwZoh,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                     ],
