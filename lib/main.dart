@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       themeMode: ThemeMode.system,
       theme: ZohAppTheme.lightTheme,
       darkTheme: ZohAppTheme.darkTheme,
-      home: HomeScreen(),
+      home: SplashScreen(),
     );
   }
 }
