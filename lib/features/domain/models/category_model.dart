@@ -12,3 +12,12 @@ List<FCategoryModel> fCategoryModel = [
   FCategoryModel(name: 'NetLace', image: ZohImageStrings.lace),
   FCategoryModel(name: 'Cashmere', image: ZohImageStrings.black),
 ];
+
+List<String> filterCategory = [
+  "Filter",
+  "Ratings",
+  "Size",
+  "Color",
+  "Price",
+  "Brand",
+];

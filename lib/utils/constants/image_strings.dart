@@ -38,4 +38,7 @@ class ZohImageStrings {
   static const String fabrics8 = "assets/images/fabrics/fabrics8.JPG";
   static const String fabrics9 = "assets/images/fabrics/fabrics9.JPG";
   static const String fabrics10 = "assets/images/fabrics/fabrics10.JPG";
+  static const String fabrics11 = "assets/images/fabrics/fabrics11.png";
+  static const String fabrics12 = "assets/images/fabrics/fabrics12.png";
+  static const String fabrics13 = "assets/images/fabrics/fabrics13.png";
 }

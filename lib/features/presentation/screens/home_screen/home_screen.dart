@@ -11,6 +11,9 @@ import 'package:fabrics_design/utils/constants/sizes.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../../domain/models/category_model.dart';
+import '../category_fabrics/category_fabrics.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -62,6 +65,27 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ? EdgeInsets.only(left: ZohSizes.sm)
                                 : EdgeInsets.only(right: ZohSizes.xs),
                             child: InkWell(
+                              onTap: () {
+                                // filter fabrics based on the selected category
+                                final filterFabrics = fabricsModel
+                                    .where(
+                                      (fabrics) =>
+                                          fabrics.category.toLowerCase() ==
+                                          fCategoryModel[index].name
+                                              .toLowerCase(),
+                                    )
+                                    .toList();
+                                // Navigate to the fabricsItems screen with the filtered list
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (_) => CategoryFabrics(
+                                      category: fCategoryModel[index].name,
+                                      categoryFabrics: filterFabrics,
+                                    ),
+                                  ),
+                                );
+                              },
                               child: Column(
                                 children: [
                                   Container(
