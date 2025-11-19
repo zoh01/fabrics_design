@@ -88,45 +88,78 @@ class _FabricsDetailsState extends State<FabricsDetails> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Image Carousel
             Container(
-              height: ZohHelperFunctions.screenHeight() * .4,
+              height: ZohHelperFunctions.screenHeight() * .45,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(ZohSizes.defaultSpace),
+                color: Colors.grey.shade400,
+                borderRadius: BorderRadius.circular(ZohSizes.xs),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.08),
+                    blurRadius: 10,
+                    offset: Offset(0, 4),
+                  ),
+                ],
               ),
               clipBehavior: Clip.antiAlias,
-              child: Stack(
-                alignment: Alignment.bottomCenter,
-                children: [
-                  PageView.builder(
-                    itemCount: 3,
-                    onPageChanged: (value) {
-                      setState(() => currentIndex = value);
-                    },
-                    itemBuilder: (context, index) {
-                      return Image.asset(
-                        fabric.image,
-                        fit: BoxFit.cover,
-                        width: double.infinity,
-                      );
-                    },
-                  ),
-                  Positioned(
-                    bottom: 14,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: List.generate(
-                        3,
-                        (index) => Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 3),
-                          child: DotIndicator(
-                            isActiveDot: index == currentIndex,
+              child: Padding(
+                padding: const EdgeInsets.all(ZohSizes.xs),
+                child: Column(
+                  children: [
+                    /// --- IMAGE PAGEVIEW ---
+                    Expanded(
+                      child: PageView.builder(
+                        itemCount: 3,
+                        onPageChanged: (value) {
+                          setState(() => currentIndex = value);
+                        },
+                        itemBuilder: (context, index) {
+                          return Hero(
+                            tag: fabric.image,
+                            child: Image.asset(
+                              fabric.image,
+                              fit: BoxFit.cover,
+                              width: double.infinity,
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+
+                    SizedBox(height: ZohSizes.iconXs),
+
+                    /// --- DOT INDICATOR (no full width) ---
+                    Align(
+                      alignment: Alignment.center,
+                      child: IntrinsicWidth(
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 10,
+                            vertical: 6,
+                          ),
+                          decoration: BoxDecoration(
+                            color: Colors.black.withOpacity(0.25),
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: Row(
+                            children: List.generate(
+                              3,
+                              (index) => Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 3,
+                                ),
+                                child: DotIndicator(
+                                  isActiveDot: index == currentIndex,
+                                ),
+                              ),
+                            ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                ],
+                    SizedBox(height: ZohSizes.sm,)
+                  ],
+                ),
               ),
             ),
 

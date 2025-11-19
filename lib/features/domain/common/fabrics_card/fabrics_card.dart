@@ -22,7 +22,6 @@ class _FabricsCardState extends State<FabricsCard> {
   @override
   Widget build(BuildContext context) {
     final fabrics = widget.fabricsItems;
-
     return GestureDetector(
       onTap: () {
         Navigator.push(
@@ -34,18 +33,19 @@ class _FabricsCardState extends State<FabricsCard> {
       },
       child: Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
-          gradient: LinearGradient(
-            colors: [
-              Colors.white.withOpacity(0.8),
-              Colors.grey.shade200.withOpacity(0.6),
-            ],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-          ),
+          borderRadius: BorderRadius.circular(ZohSizes.spaceBtwZoh),
+          color: Colors.grey.shade200,
+          // gradient: LinearGradient(
+          //   colors: [
+          //     Colors.white.withOpacity(0.8),
+          //     Colors.grey.shade200.withOpacity(0.6),
+          //   ],
+          //   begin: Alignment.topLeft,
+          //   end: Alignment.bottomRight,
+          // ),
           boxShadow: [
             BoxShadow(
-              color: ZohColors.darkColor.withOpacity(0.1),
+              color: ZohColors.darkColor.withOpacity(0.2),
               blurRadius: 4,
               offset: const Offset(0, 6),
             ),
@@ -57,15 +57,18 @@ class _FabricsCardState extends State<FabricsCard> {
             // 🖼️ Image Section
             Stack(
               children: [
-                ClipRRect(
-                  borderRadius: const BorderRadius.vertical(
-                    top: Radius.circular(20),
-                  ),
-                  child: Image.asset(
-                    fabrics.image,
-                    width: double.infinity,
-                    height: ZohHelperFunctions.screenHeight() * 0.22,
-                    fit: BoxFit.cover,
+                Hero(
+                  tag: fabrics.image,
+                  child: ClipRRect(
+                    borderRadius: const BorderRadius.vertical(
+                      top: Radius.circular(20),
+                    ),
+                    child: Image.asset(
+                      fabrics.image,
+                      width: double.infinity,
+                      height: ZohHelperFunctions.screenHeight() * 0.22,
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
 
