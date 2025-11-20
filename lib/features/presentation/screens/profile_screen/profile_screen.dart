@@ -8,7 +8,7 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Text('Profile Screen', style: TextStyle(fontSize: ZohSizes.spaceBtwSections),),
+        child: Text('Profile Screen', style: TextStyle(fontSize: ZohSizes.defaultSpace),),
       ),
     );
   }

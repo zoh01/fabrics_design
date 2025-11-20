@@ -25,7 +25,6 @@ class CategoryFabrics extends StatelessWidget {
     crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SizedBox(height: ZohSizes.md),
-
         // ---------- TOP BAR (Back + Search) ----------
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: ZohSizes.md),
@@ -109,7 +108,6 @@ class CategoryFabrics extends StatelessWidget {
                 filterCategory.length,
                     (index) {
                   final isActive = index == 0;
-
                   return Padding(
                     padding: EdgeInsets.only(right: ZohSizes.sm),
                     child: Container(

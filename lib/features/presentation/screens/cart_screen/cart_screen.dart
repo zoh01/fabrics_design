@@ -8,7 +8,7 @@ class CartScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Text('Cart Screen', style: TextStyle(fontSize: ZohSizes.spaceBtwSections),),
+        child: Text('Cart Screen', style: TextStyle(fontSize: ZohSizes.defaultSpace),),
       ),
     );
   }
