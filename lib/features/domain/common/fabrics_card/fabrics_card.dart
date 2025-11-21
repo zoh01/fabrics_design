@@ -1,8 +1,10 @@
+import 'package:fabrics_design/features/data/provider/cart_provider.dart';
 import 'package:fabrics_design/features/domain/models/fabrics_model.dart';
 import 'package:fabrics_design/utils/constants/sizes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/helper_functions/helper_functions.dart';
 import '../fabrics_details/fabrics_details.dart';
@@ -21,6 +23,7 @@ class _FabricsCardState extends State<FabricsCard> {
 
   @override
   Widget build(BuildContext context) {
+    CartProvider cartProvider = Provider.of<CartProvider>(context);
     final fabrics = widget.fabricsItems;
     return GestureDetector(
       onTap: () {
@@ -168,18 +171,23 @@ class _FabricsCardState extends State<FabricsCard> {
                           color: ZohColors.primaryColor,
                         ),
                       ),
-                      Container(
-                        decoration: BoxDecoration(
-                          color: ZohColors.primaryColor,
-                          borderRadius: BorderRadius.circular(ZohSizes.iconXs),
-                        ),
-                        child: const Padding(
-                          padding: EdgeInsets.all(10),
-                          child: Icon(
-                            Icons.add,
-                            color: Colors.white,
-                            size: ZohSizes.spaceBtwZoh,
-                            fontWeight: FontWeight.bold,
+                      GestureDetector(
+                        onTap: () {
+                          cartProvider.addCart(fabrics);
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: ZohColors.primaryColor,
+                            borderRadius: BorderRadius.circular(ZohSizes.iconXs),
+                          ),
+                          child: const Padding(
+                            padding: EdgeInsets.all(10),
+                            child: Icon(
+                              Icons.add,
+                              color: Colors.white,
+                              size: ZohSizes.spaceBtwZoh,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                       ),
