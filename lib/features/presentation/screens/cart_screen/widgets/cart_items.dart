@@ -71,7 +71,9 @@ class CartFabrics extends StatelessWidget {
 
                     // Delete Button
                     InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        cartProvider.removeFromCart(cartModel.fabricsModel);
+                      },
                       borderRadius: BorderRadius.circular(50),
                       child: Container(
                         padding: const EdgeInsets.all(6),

@@ -1,23 +1,28 @@
+import 'package:fabrics_design/features/domain/models/fabrics_model.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../../utils/constants/colors.dart';
 import '../../../../../utils/constants/sizes.dart';
+import '../../../data/provider/cart_provider.dart';
 
-class ZAddToCart extends StatelessWidget {
+class ZAddToCart extends StatefulWidget {
+  final FabricsModel fabricsDetails;
+
   const ZAddToCart({
-    super.key,
-    required this.onAdd,
-    required this.onRemove,
-    required this.currentNumber,
+    super.key, required this.fabricsDetails,
   });
 
-  final Function() onAdd;
-  final Function() onRemove;
-  final int currentNumber;
+  @override
+  State<ZAddToCart> createState() => _ZAddToCartState();
+}
 
+class _ZAddToCartState extends State<ZAddToCart> {
   @override
   Widget build(BuildContext context) {
+    final fabric = widget.fabricsDetails;
+    CartProvider cartProvider = Provider.of<CartProvider>(context);
     return Container(
       height: 70,
       decoration: BoxDecoration(
@@ -32,27 +37,32 @@ class ZAddToCart extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Container(
-            height: 40,
-            decoration: BoxDecoration(
-              color: ZohColors.secondaryColor,
-              borderRadius: BorderRadius.circular(ZohSizes.md),
-            ),
-            child: const Padding(
-              padding: EdgeInsets.symmetric(horizontal: ZohSizes.iconXs),
-              child: Row(
-                children: [
-                  Icon(Iconsax.shopping_bag, size: 25, color: Colors.white),
-                  SizedBox(width: ZohSizes.sm),
-                  Text(
-                    'ADD TO CART',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: ZohSizes.md,
-                      fontWeight: FontWeight.bold,
+          GestureDetector(
+            onTap: () {
+              cartProvider.addCart(fabric);
+            },
+            child: Container(
+              height: 40,
+              decoration: BoxDecoration(
+                color: ZohColors.secondaryColor,
+                borderRadius: BorderRadius.circular(ZohSizes.md),
+              ),
+              child: const Padding(
+                padding: EdgeInsets.symmetric(horizontal: ZohSizes.iconXs),
+                child: Row(
+                  children: [
+                    Icon(Iconsax.shopping_bag, size: 25, color: Colors.white),
+                    SizedBox(width: ZohSizes.sm),
+                    Text(
+                      'ADD TO CART',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: ZohSizes.md,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),

@@ -195,7 +195,7 @@ class CategoryFabrics extends StatelessWidget {
                       ),
                     );
                   },
-                  child: CategoryCard(fabrics: fabrics),
+                  child: CategoryCard(fabricsCategory: fabrics),
                 );
               },
             ),

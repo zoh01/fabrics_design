@@ -1,28 +1,33 @@
-import 'package:fabrics_design/features/domain/common/fabrics_details/fabrics_details.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../../utils/constants/colors.dart';
 import '../../../../../utils/constants/sizes.dart';
 import '../../../../../utils/helper_functions/helper_functions.dart';
+import '../../../../data/provider/cart_provider.dart';
 import '../../../../domain/models/fabrics_model.dart';
 
 
 class CategoryCard extends StatefulWidget {
   const CategoryCard({
     super.key,
-    required this.fabrics,
+    required this.fabricsCategory,
   });
 
-  final FabricsModel fabrics;
+  final FabricsModel fabricsCategory;
 
   @override
   State<CategoryCard> createState() => _CategoryCardState();
 }
 
 class _CategoryCardState extends State<CategoryCard> {
+
+
   @override
   Widget build(BuildContext context) {
+    final fabric = widget.fabricsCategory;
+    CartProvider cartProvider = Provider.of<CartProvider>(context);
     bool isFavorite = false;
     return Container(
       decoration: BoxDecoration(
@@ -54,7 +59,7 @@ class _CategoryCardState extends State<CategoryCard> {
                   top: Radius.circular(20),
                 ),
                 child: Image.asset(
-                  widget.fabrics.image,
+                  widget.fabricsCategory.image,
                   width: double.infinity,
                   height:
                   ZohHelperFunctions.screenHeight() *
@@ -79,7 +84,7 @@ class _CategoryCardState extends State<CategoryCard> {
                     ),
                   ),
                   child: Text(
-                    "-${widget.fabrics.discount}%",
+                    "-${widget.fabricsCategory.discount}%",
                     style: const TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
@@ -120,7 +125,7 @@ class _CategoryCardState extends State<CategoryCard> {
               CrossAxisAlignment.start,
               children: [
                 Text(
-                  widget.fabrics.name,
+                  widget.fabricsCategory.name,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: GoogleFonts.montserrat(
@@ -139,14 +144,14 @@ class _CategoryCardState extends State<CategoryCard> {
                     ),
                     const SizedBox(width: 3),
                     Text(
-                      widget.fabrics.rating.toStringAsFixed(1),
+                      widget.fabricsCategory.rating.toStringAsFixed(1),
                       style: GoogleFonts.inter(
                         fontWeight: FontWeight.w600,
                       ),
                     ),
                     const SizedBox(width: 6),
                     Text(
-                      "(${widget.fabrics.review} reviews)",
+                      "(${widget.fabricsCategory.review} reviews)",
                       style: GoogleFonts.inter(
                         color: Colors.grey.shade600,
                         fontSize: 12,
@@ -162,28 +167,33 @@ class _CategoryCardState extends State<CategoryCard> {
                   MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "#${widget.fabrics.price.toStringAsFixed(0)}",
+                      "#${widget.fabricsCategory.price.toStringAsFixed(0)}",
                       style: GoogleFonts.sora(
                         fontWeight: FontWeight.bold,
                         fontSize: 18,
                         color: ZohColors.primaryColor,
                       ),
                     ),
-                    Container(
-                      decoration: BoxDecoration(
-                        color: ZohColors.primaryColor,
-                        borderRadius:
-                        BorderRadius.circular(
-                          ZohSizes.iconXs,
+                    GestureDetector(
+                      onTap: () {
+                        cartProvider.addCart(fabric);
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: ZohColors.primaryColor,
+                          borderRadius:
+                          BorderRadius.circular(
+                            ZohSizes.iconXs,
+                          ),
                         ),
-                      ),
-                      child: const Padding(
-                        padding: EdgeInsets.all(10),
-                        child: Icon(
-                          Icons.add,
-                          color: Colors.white,
-                          size: ZohSizes.spaceBtwZoh,
-                          fontWeight: FontWeight.bold,
+                        child: const Padding(
+                          padding: EdgeInsets.all(10),
+                          child: Icon(
+                            Icons.add,
+                            color: Colors.white,
+                            size: ZohSizes.spaceBtwZoh,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                     ),

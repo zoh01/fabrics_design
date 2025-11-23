@@ -1,3 +1,4 @@
+import 'package:fabrics_design/features/data/provider/cart_provider.dart';
 import 'package:fabrics_design/features/domain/common/add_to_cart/widgets/add_remove.dart';
 import 'package:fabrics_design/features/domain/models/fabrics_model.dart';
 import 'package:fabrics_design/utils/helper_functions/helper_functions.dart';
@@ -5,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/sizes.dart';
@@ -316,21 +318,7 @@ class _FabricsDetailsState extends State<FabricsDetails> {
       ),
 
       // 🛒 Modern Add to Cart Bar
-      bottomNavigationBar: ZAddToCart(
-        onAdd: () {
-          setState(() {
-            currentNumber++;
-          });
-        },
-        onRemove: () {
-          if (currentNumber != 1) {
-            setState(() {
-              currentNumber--;
-            });
-          }
-        },
-        currentNumber: currentNumber,
-      ),
+      bottomNavigationBar: ZAddToCart(fabricsDetails: fabric,),
     );
   }
 }

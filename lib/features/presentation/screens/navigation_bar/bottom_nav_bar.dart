@@ -8,15 +8,24 @@ import 'package:fabrics_design/utils/constants/sizes.dart';
 import 'package:flutter/material.dart';
 
 class BottomNavBar extends StatefulWidget {
-  const BottomNavBar({super.key});
+  const BottomNavBar({super.key, this.initialIndex = 0});
+
+  final int initialIndex;
 
   @override
   State<BottomNavBar> createState() => _BottomNavBarState();
 }
 
 class _BottomNavBarState extends State<BottomNavBar> {
-  int index = 0;
+  // int index = 0;
+  late int index;
   final navigationKey = GlobalKey<CurvedNavigationBarState>();
+
+  @override
+  void initState() {
+    super.initState();
+    index = widget.initialIndex;
+  }
 
   final screens = [
     HomeScreen(),

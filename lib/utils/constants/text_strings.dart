@@ -15,4 +15,6 @@ class ZohTextString {
   static const explore = "Explore all the various fabrics available for you and choose your favorite designs";
   static const welcome = "Welcome back you've \n been missed!";
   static const create = "Create an account so that you can explore all the available fabrics";
+
+  static const empty = "Your basket is empty...";
 }

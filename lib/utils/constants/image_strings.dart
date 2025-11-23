@@ -1,6 +1,7 @@
 /// This class contain the App Images in String Format
 class ZohImageStrings {
   static const String fabricsImage = "assets/images/fabrics_logo.png";
+  static const String emptyBasket = "assets/images/empty_basket.png";
 
   /// Onboarding Screen Images
   static const String selectFabrics = "assets/images/onboarding_images/select_product.png";

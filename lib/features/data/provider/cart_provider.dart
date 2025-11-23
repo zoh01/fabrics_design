@@ -51,6 +51,12 @@ class CartProvider with ChangeNotifier {
     notifyListeners(); // Update the quantity change
   }
 
+  // Remove Fabrics from cart screen
+  void removeFromCart(FabricsModel fabrics) {
+    _carts.removeWhere((element) => element.fabricsModel == fabrics);
+    notifyListeners();
+  }
+
   // Check if a product already exists in the cart.
 // return true if the product is in the cart, false otherwise
   fabricsExist(FabricsModel fabricsModel) {
