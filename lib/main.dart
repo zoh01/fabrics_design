@@ -1,4 +1,5 @@
 import 'package:fabrics_design/features/data/provider/cart_provider.dart';
+import 'package:fabrics_design/features/data/provider/navigation_provider.dart';
 import 'package:fabrics_design/features/presentation/screens/home_screen/home_screen.dart';
 import 'package:fabrics_design/features/presentation/screens/splash_screen/splash_screen.dart';
 import 'package:fabrics_design/utils/themes/themes.dart';
@@ -16,7 +17,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers: [ChangeNotifierProvider(create: (create) => CartProvider())],
+      providers: [
+        ChangeNotifierProvider(create: (create) => CartProvider()),
+        ChangeNotifierProvider(create: (create) => NavigationProvider()),
+      ],
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
         themeMode: ThemeMode.system,

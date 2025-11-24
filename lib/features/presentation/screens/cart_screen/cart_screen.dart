@@ -1,4 +1,5 @@
 import 'package:fabrics_design/features/data/provider/cart_provider.dart';
+import 'package:fabrics_design/features/data/provider/navigation_provider.dart';
 import 'package:fabrics_design/features/domain/models/cart_model.dart';
 import 'package:fabrics_design/features/presentation/screens/cart_screen/widgets/cart_items.dart';
 import 'package:fabrics_design/features/presentation/screens/shopping_screen/shopping_screen.dart';
@@ -50,15 +51,13 @@ class CartScreen extends StatelessWidget {
                       SizedBox(height: ZohSizes.iconXs),
                       FadeInUp(
                         child: ElevatedButton(
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => const BottomNavBar(initialIndex: 1),
-                                ),
-                              );
-                            },
-                            child: Padding(
+                          onPressed: () {
+                            Provider.of<NavigationProvider>(
+                              context,
+                              listen: false,
+                            ).changeTab(1);
+                          },
+                          child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text("Explore Fabrics"),
                           ),
