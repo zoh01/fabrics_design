@@ -2,10 +2,8 @@ import 'package:fabrics_design/features/data/provider/cart_provider.dart';
 import 'package:fabrics_design/features/data/provider/navigation_provider.dart';
 import 'package:fabrics_design/features/domain/models/cart_model.dart';
 import 'package:fabrics_design/features/presentation/screens/cart_screen/widgets/cart_items.dart';
-import 'package:fabrics_design/features/presentation/screens/shopping_screen/shopping_screen.dart';
 import 'package:fabrics_design/utils/constants/sizes.dart';
 import 'package:fabrics_design/utils/helper_functions/helper_functions.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -14,7 +12,6 @@ import 'package:animate_do/animate_do.dart';
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/image_strings.dart';
 import '../../../../utils/constants/text_strings.dart';
-import '../navigation_bar/bottom_nav_bar.dart';
 
 class CartScreen extends StatelessWidget {
   const CartScreen({super.key});
