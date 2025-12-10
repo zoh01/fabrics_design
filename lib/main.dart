@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (create) => NavigationProvider()),
       ],
       child: GetMaterialApp(
-        debugShowCheckedModeBanner: false,
+        debugShowCheckedModeBanner:  false,
         themeMode: ThemeMode.system,
         theme: ZohAppTheme.lightTheme,
         darkTheme: ZohAppTheme.darkTheme,

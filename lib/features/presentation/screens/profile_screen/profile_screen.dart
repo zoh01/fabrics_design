@@ -7,8 +7,11 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Text('Profile Screen', style: TextStyle(fontSize: ZohSizes.defaultSpace),),
+      appBar: AppBar(
+        title: Text("Profile Screen"),
+      ),
+      body: Column(
+        children: [],
       ),
     );
   }
