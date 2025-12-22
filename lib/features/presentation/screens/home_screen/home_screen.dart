@@ -157,6 +157,7 @@ class _HomeScreenState extends State<HomeScreen> {
               itemBuilder: (context, index) =>
                   FabricsCard(fabricsItems: fabricsModel[index]),
             ),
+            SizedBox(height: 80,)
           ],
         ),
       ),

@@ -1,6 +1,5 @@
 import 'package:fabrics_design/features/data/provider/cart_provider.dart';
 import 'package:fabrics_design/features/data/provider/navigation_provider.dart';
-import 'package:fabrics_design/features/presentation/screens/home_screen/home_screen.dart';
 import 'package:fabrics_design/features/presentation/screens/splash_screen/splash_screen.dart';
 import 'package:fabrics_design/utils/themes/themes.dart';
 import 'package:flutter/material.dart';

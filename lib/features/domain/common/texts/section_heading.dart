@@ -1,4 +1,5 @@
 import 'package:fabrics_design/utils/constants/colors.dart';
+import 'package:fabrics_design/utils/constants/sizes.dart';
 import 'package:flutter/material.dart';
 
 class ZSectionHeading extends StatelessWidget {
@@ -31,7 +32,7 @@ class ZSectionHeading extends StatelessWidget {
           overflow: TextOverflow.ellipsis,
         ),
         if (showActionButton)
-          TextButton(onPressed: onPressed, child: Text(buttonTitle, style: TextStyle(color: ZohColors.secondaryColor),)),
+          TextButton(onPressed: onPressed, child: Text(buttonTitle, style: TextStyle(color: ZohColors.secondaryColor, fontSize: ZohSizes.md),)),
       ],
     );
   }
