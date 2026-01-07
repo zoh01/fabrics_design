@@ -108,11 +108,11 @@ List<FabricsModel> fabricsModel = [
     description: "",
     category: "Italian",
     rating: 4.9,
-    review: 192,
+    review: 190,
     price: 20000,
     fColor: [Colors.black, Colors.blue, Colors.green],
     isCheck: true,
-    discount: '15',
+    discount: '14',
   ),
   //id:8
   FabricsModel(

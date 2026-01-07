@@ -76,7 +76,7 @@ class _ZAddToCartState extends State<ZAddToCart> {
               padding: EdgeInsets.symmetric(horizontal: ZohSizes.iconXs),
               child: Row(
                 children: [
-                  Icon(Iconsax.shopping_bag, size: 25, color: Colors.white),
+                  Icon(Iconsax.shopping_bag, size: 24, color: Colors.white),
                   SizedBox(width: ZohSizes.sm),
                   Text(
                     'BUY NOW',
