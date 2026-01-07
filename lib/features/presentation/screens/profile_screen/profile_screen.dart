@@ -1,3 +1,4 @@
+import 'package:fabrics_design/utils/constants/sizes.dart';
 import 'package:flutter/material.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -7,7 +8,7 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Profile Screen"),
+        title: Text("Profile Screen", style: TextStyle(fontSize: ZohSizes.spaceBtwZoh, fontWeight: FontWeight.bold),),
       ),
       body: Column(
         children: [
