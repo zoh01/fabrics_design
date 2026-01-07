@@ -34,7 +34,7 @@ List<FabricsModel> fabricsModel = [
     price: 8000,
     fColor: [Colors.black, Colors.blue, Colors.green],
     isCheck: true,
-    discount: '16',
+    discount: '15',
   ),
   //id:2
   FabricsModel(
@@ -70,7 +70,7 @@ List<FabricsModel> fabricsModel = [
     category: "Wool",
     rating: 4.8,
     review: 208,
-    price: 8000,
+    price: 9000,
     fColor: [Colors.black, Colors.blue, Colors.green],
     isCheck: true,
     discount: '15',
