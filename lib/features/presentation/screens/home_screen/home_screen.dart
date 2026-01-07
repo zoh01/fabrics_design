@@ -11,7 +11,6 @@ import 'package:fabrics_design/utils/constants/sizes.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../../domain/models/category_model.dart';
 import '../category_fabrics/category_fabrics.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -157,7 +156,7 @@ class _HomeScreenState extends State<HomeScreen> {
               itemBuilder: (context, index) =>
                   FabricsCard(fabricsItems: fabricsModel[index]),
             ),
-            SizedBox(height: 80,)
+            SizedBox(height: 80),
           ],
         ),
       ),
