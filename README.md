@@ -39,3 +39,7 @@ A modern, elegant fabrics materials application built with Flutter that brings q
 ---
 
 ## 📱 App Preview
+
+---
+
+## 🤝 Contributing
