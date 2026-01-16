@@ -118,7 +118,7 @@ class CartFabrics extends StatelessWidget {
                   children: [
                     /// Price
                     Text(
-                      "#${cartModel.fabricsModel.price.toStringAsFixed(2)}",
+                      "₦${cartModel.fabricsModel.price.toStringAsFixed(2)}",
                       style: GoogleFonts.sora(
                         fontSize: 17,
                         fontWeight: FontWeight.bold,

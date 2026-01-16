@@ -80,7 +80,7 @@ class _ZAddToCartState extends State<ZAddToCart> {
                   SizedBox(width: ZohSizes.sm),
                   Text(
                     'BUY NOW',
-                    style: TextStyle(
+                     style: TextStyle(
                       color: Colors.white,
                       fontSize: ZohSizes.md,
                       fontWeight: FontWeight.bold,
