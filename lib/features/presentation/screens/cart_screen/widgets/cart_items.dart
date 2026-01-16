@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 
 import '../../../../../utils/constants/colors.dart';
 import '../../../../../utils/constants/sizes.dart';
+import '../../../../domain/common/price_format/price_format.dart';
 
 class CartFabrics extends StatelessWidget {
   final CartModel cartModel;
@@ -34,7 +35,6 @@ class CartFabrics extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-
           /// ---------------- IMAGE ----------------
           ClipRRect(
             borderRadius: BorderRadius.circular(14),
@@ -118,13 +118,14 @@ class CartFabrics extends StatelessWidget {
                   children: [
                     /// Price
                     Text(
-                      "₦${cartModel.fabricsModel.price.toStringAsFixed(2)}",
+                      formatPrice(cartModel.fabricsModel.price.toDouble()),
                       style: GoogleFonts.sora(
                         fontSize: 17,
                         fontWeight: FontWeight.bold,
                         color: ZohColors.darkColor,
                       ),
                     ),
+
 
                     /// Quantity Control
                     Container(
