@@ -8,6 +8,7 @@ import 'package:provider/provider.dart';
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/helper_functions/helper_functions.dart';
 import '../fabrics_details/fabrics_details.dart';
+import '../price_format/price_format.dart';
 
 class FabricsCard extends StatefulWidget {
   final FabricsModel fabricsItems;
@@ -38,14 +39,6 @@ class _FabricsCardState extends State<FabricsCard> {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(ZohSizes.spaceBtwZoh),
           color: Colors.grey.shade200,
-          // gradient: LinearGradient(
-          //   colors: [
-          //     Colors.white.withOpacity(0.8),
-          //     Colors.grey.shade200.withOpacity(0.6),
-          //   ],
-          //   begin: Alignment.topLeft,
-          //   end: Alignment.bottomRight,
-          // ),
           boxShadow: [
             BoxShadow(
               color: ZohColors.darkColor.withOpacity(0.2),
@@ -57,7 +50,7 @@ class _FabricsCardState extends State<FabricsCard> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // 🖼️ Image Section
+            // Image Section
             Stack(
               children: [
                 Hero(
@@ -75,7 +68,7 @@ class _FabricsCardState extends State<FabricsCard> {
                   ),
                 ),
 
-                // 💰 Discount Tag
+                // Discount Tag
                 Positioned(
                   top: 10,
                   left: 10,
@@ -164,10 +157,11 @@ class _FabricsCardState extends State<FabricsCard> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "#${fabrics.price.toStringAsFixed(0)}",
+                        // "#${fabrics.price.toStringAsFixed(0)}",
+                        formatPrice(fabrics.price.toDouble()),
                         style: GoogleFonts.sora(
                           fontWeight: FontWeight.bold,
-                          fontSize: 18,
+                          fontSize: 15,
                           color: ZohColors.primaryColor,
                         ),
                       ),
