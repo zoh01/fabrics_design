@@ -175,11 +175,11 @@ class _FabricsCardState extends State<FabricsCard> {
                             borderRadius: BorderRadius.circular(ZohSizes.iconXs),
                           ),
                           child: const Padding(
-                            padding: EdgeInsets.all(10),
+                            padding: EdgeInsets.all(ZohSizes.sm),
                             child: Icon(
                               Icons.add,
                               color: Colors.white,
-                              size: ZohSizes.spaceBtwZoh,
+                              size: ZohSizes.md,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
