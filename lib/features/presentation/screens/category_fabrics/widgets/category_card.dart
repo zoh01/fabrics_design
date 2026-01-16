@@ -6,6 +6,7 @@ import '../../../../../utils/constants/colors.dart';
 import '../../../../../utils/constants/sizes.dart';
 import '../../../../../utils/helper_functions/helper_functions.dart';
 import '../../../../data/provider/cart_provider.dart';
+import '../../../../domain/common/price_format/price_format.dart';
 import '../../../../domain/models/fabrics_model.dart';
 
 
@@ -167,10 +168,10 @@ class _CategoryCardState extends State<CategoryCard> {
                   MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "#${widget.fabricsCategory.price.toStringAsFixed(0)}",
+                      formatPrice(widget.fabricsCategory.price.toDouble()),
                       style: GoogleFonts.sora(
                         fontWeight: FontWeight.bold,
-                        fontSize: 18,
+                        fontSize: 15,
                         color: ZohColors.primaryColor,
                       ),
                     ),
@@ -187,11 +188,11 @@ class _CategoryCardState extends State<CategoryCard> {
                           ),
                         ),
                         child: const Padding(
-                          padding: EdgeInsets.all(10),
+                          padding: EdgeInsets.all(ZohSizes.sm),
                           child: Icon(
                             Icons.add,
                             color: Colors.white,
-                            size: ZohSizes.spaceBtwZoh,
+                            size: ZohSizes.md,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
