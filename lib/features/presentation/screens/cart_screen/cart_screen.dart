@@ -1,5 +1,6 @@
 import 'package:fabrics_design/features/data/provider/cart_provider.dart';
 import 'package:fabrics_design/features/data/provider/navigation_provider.dart';
+import 'package:fabrics_design/features/domain/common/price_format/price_format.dart';
 import 'package:fabrics_design/features/domain/models/cart_model.dart';
 import 'package:fabrics_design/features/presentation/screens/cart_screen/widgets/cart_items.dart';
 import 'package:fabrics_design/utils/constants/sizes.dart';
@@ -158,7 +159,8 @@ class CartScreen extends StatelessWidget {
                     padding: EdgeInsets.symmetric(vertical: 16),
                   ),
                   child: Text(
-                    "Checkout  #${(cartProvider.totalCart() + 3.52).toStringAsFixed(2)}",
+                    // "Checkout  #${(cartProvider.totalCart() + 3.52).toStringAsFixed(2)}",
+                    "Checkout  ${formatPrice(cartProvider.totalCart() + 1500)}",
                     style: GoogleFonts.roboto(
                       fontSize: ZohSizes.spaceBtwZoh,
                       fontWeight: FontWeight.bold,
