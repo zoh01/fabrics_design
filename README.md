@@ -48,3 +48,7 @@ A modern, elegant fabrics materials application built with Flutter that brings q
 
 ## 👤 Author
 **Adebayo Wariz**  
+
+### Contact
+adebayozoh@gmail.com
++234 702 513 6608
