@@ -1,5 +1,6 @@
 import 'package:fabrics_design/features/data/provider/cart_provider.dart';
 import 'package:fabrics_design/features/domain/common/add_to_cart/widgets/add_remove.dart';
+import 'package:fabrics_design/features/domain/common/price_format/price_format.dart';
 import 'package:fabrics_design/features/domain/models/fabrics_model.dart';
 import 'package:fabrics_design/utils/helper_functions/helper_functions.dart';
 import 'package:flutter/material.dart';
@@ -217,7 +218,7 @@ class _FabricsDetailsState extends State<FabricsDetails> {
                     Row(
                       children: [
                         Text(
-                          "#${discountedPrice.toStringAsFixed(2)}",
+                          formatPrice(discountedPrice),
                           style: GoogleFonts.sora(
                             fontSize: 22,
                             color: ZohColors.primaryColor,
@@ -226,7 +227,7 @@ class _FabricsDetailsState extends State<FabricsDetails> {
                         ),
                         const SizedBox(width: ZohSizes.sm),
                         Text(
-                          "₦${fabric.price.toStringAsFixed(2)}",
+                          formatPrice(fabric.price.toDouble()),
                           style: const TextStyle(
                             fontSize: 16,
                             color: Colors.grey,
