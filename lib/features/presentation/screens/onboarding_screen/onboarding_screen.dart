@@ -175,13 +175,13 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   Widget _buildSkipButton() {
     // Don't show skip button on last page
     if (_pageIndex == _onBoardingData.length - 1) {
-      return const SizedBox(height: 48); // Maintain spacing
+      return const SizedBox(height: 48);
     }
 
     return Align(
       alignment: Alignment.centerRight,
       child: SlideInRight(
-        duration: const Duration(milliseconds: 1200),
+        duration: const Duration(milliseconds: 700),
         delay: const Duration(milliseconds: 500),
         child: TextButton(
           onPressed: _isAnimating ? null : _skipToEnd,
