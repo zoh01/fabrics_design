@@ -6,7 +6,6 @@ import 'package:fabrics_design/utils/constants/colors.dart';
 import 'package:fabrics_design/utils/constants/image_strings.dart';
 import 'package:fabrics_design/utils/constants/sizes.dart';
 import 'package:fabrics_design/utils/constants/text_strings.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:animate_do/animate_do.dart';
@@ -21,8 +20,10 @@ class OnboardingScreen extends StatefulWidget {
 class _OnboardingScreenState extends State<OnboardingScreen> {
   late PageController _pageController;
   int _pageIndex = 0;
+  bool _isAnimating = false;
 
-  final List<OnBoardingModels> onBoardingModel = [
+  // Extract to a static const for better performance
+  static final List<OnBoardingModels> _onBoardingData = [
     OnBoardingModels(
       ZohImageStrings.selectFabrics,
       ZohTextString.onBoardingTitle1,
@@ -42,8 +43,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   @override
   void initState() {
-    _pageController = PageController(initialPage: 0);
     super.initState();
+    _pageController = PageController(initialPage: 0);
   }
 
   @override
@@ -52,34 +53,76 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     super.dispose();
   }
 
-  void _nextPage() {
-    if (_pageIndex < onBoardingModel.length - 1) {
-      _pageController.nextPage(
-        duration: const Duration(milliseconds: 400),
-        curve: Curves.easeInOut,
-      );
-    } else {
-      _goToGetStarted();
+  Future<void> _nextPage() async {
+    if (_isAnimating) return;
+
+    setState(() => _isAnimating = true);
+
+    try {
+      if (_pageIndex < _onBoardingData.length - 1) {
+        await _pageController.nextPage(
+          duration: const Duration(milliseconds: 400),
+          curve: Curves.easeInOut,
+        );
+      } else {
+        await _goToGetStarted();
+      }
+    } finally {
+      if (mounted) {
+        setState(() => _isAnimating = false);
+      }
     }
   }
 
-  void _skipToEnd() {
-    _pageController.animateToPage(
-      onBoardingModel.length - 1,
-      duration: const Duration(milliseconds: 400),
-      curve: Curves.easeInOut,
-    );
+  Future<void> _skipToEnd() async {
+    if (_isAnimating) return;
+
+    setState(() => _isAnimating = true);
+
+    try {
+      await _pageController.animateToPage(
+        _onBoardingData.length - 1,
+        duration: const Duration(milliseconds: 600),
+        curve: Curves.easeInOut,
+      );
+    } finally {
+      if (mounted) {
+        setState(() => _isAnimating = false);
+      }
+    }
   }
 
-  void _goToGetStarted() {
-    Navigator.pushReplacement(
+  Future<void> _goToGetStarted() async {
+    if (!mounted) return;
+
+    await Navigator.pushReplacement(
       context,
-      CupertinoPageRoute(builder: (_) => const GetStartedScreen()),
+      PageRouteBuilder(
+        pageBuilder: (context, animation, secondaryAnimation) =>
+        const GetStartedScreen(),
+        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+          const begin = Offset(1.0, 0.0);
+          const end = Offset.zero;
+          const curve = Curves.easeInOut;
+
+          final tween = Tween(begin: begin, end: end).chain(
+            CurveTween(curve: curve),
+          );
+
+          return SlideTransition(
+            position: animation.drive(tween),
+            child: child,
+          );
+        },
+        transitionDuration: const Duration(milliseconds: 500),
+      ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
+    final isLastPage = _pageIndex == _onBoardingData.length - 1;
+
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -87,102 +130,131 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           child: Column(
             children: [
               /// Skip Button (Top Right)
-              Align(
-                alignment: Alignment.centerRight,
-                child: SlideInRight(
-                  duration: Duration(milliseconds: 1200),
-                  delay: Duration(milliseconds: 500),
-                  child: TextButton(
-                    onPressed: _skipToEnd,
-                    child: Text(
-                      'Skip',
-                      style: TextStyle(
-                        color: ZohColors.primaryColor,
-                        fontWeight: FontWeight.bold,
-                        fontSize: ZohSizes.md
-                      ),
-                    ),
-                  ),
-                ),
-              ),
+              _buildSkipButton(),
 
               /// Onboarding Content
               Expanded(
                 child: PageView.builder(
                   controller: _pageController,
-                  itemCount: onBoardingModel.length,
+                  itemCount: _onBoardingData.length,
+                  physics: const BouncingScrollPhysics(),
                   onPageChanged: (index) {
                     if (mounted) {
                       setState(() => _pageIndex = index);
                     }
                   },
                   itemBuilder: (context, index) {
-                    final model = onBoardingModel[index];
-                    return AnimatedSwitcher(
-                      duration: const Duration(milliseconds: 400),
-                      transitionBuilder: (child, anim) =>
-                          FadeTransition(opacity: anim, child: child),
-                      child: OnboardingContent(
-                        key: ValueKey(index),
-                        image: model.image,
-                        title: model.title,
-                        sunTitle: model.subTitle,
-                        isFirstPage: index == 0,
-                      ),
+                    final model = _onBoardingData[index];
+                    return OnboardingContent(
+                      key: ValueKey(index),
+                      image: model.image,
+                      title: model.title,
+                      sunTitle: model.subTitle,
+                      isFirstPage: index == 0,
                     );
                   },
                 ),
               ),
 
               /// Dot Indicators
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: List.generate(
-                  onBoardingModel.length,
-                  (index) => Padding(
-                    padding: const EdgeInsets.only(left: ZohSizes.xs),
-                    child: FadeInUp(
-                      duration: Duration(milliseconds: 1200),
-                      delay: Duration(milliseconds: 900),
-                      child: DotIndicator(isActiveDot: index == _pageIndex),
-                    ),
-                  ),
-                ),
-              ),
+              _buildDotIndicators(),
 
               const SizedBox(height: ZohSizes.spaceBtwSections),
 
               /// Next / Get Started Button
-              SizedBox(
-                width: double.infinity,
-                child: BounceInUp(
-                  duration: Duration(milliseconds: 1200),
-                  delay: Duration(milliseconds: 1200),
-                  child: ElevatedButton(
-                    onPressed: _nextPage,
-                    style: ElevatedButton.styleFrom(
-                      elevation: 5,
-                      backgroundColor: ZohColors.primaryColor,
-                      side: BorderSide(color: ZohColors.primaryColor),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(ZohSizes.md),
-                      ),
-                    ),
-                    child: Text(
-                      _pageIndex == onBoardingModel.length - 1
-                          ? 'Get Started'
-                          : 'Next',
-                      style: GoogleFonts.merriweather(
-                        fontSize: ZohSizes.spaceBtwZoh,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
+              _buildActionButton(isLastPage),
 
               const SizedBox(height: ZohSizes.md),
             ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildSkipButton() {
+    // Don't show skip button on last page
+    if (_pageIndex == _onBoardingData.length - 1) {
+      return const SizedBox(height: 48); // Maintain spacing
+    }
+
+    return Align(
+      alignment: Alignment.centerRight,
+      child: SlideInRight(
+        duration: const Duration(milliseconds: 1200),
+        delay: const Duration(milliseconds: 500),
+        child: TextButton(
+          onPressed: _isAnimating ? null : _skipToEnd,
+          child: Text(
+            'Skip',
+            style: TextStyle(
+              color: _isAnimating
+                  ? ZohColors.primaryColor.withOpacity(0.5)
+                  : ZohColors.primaryColor,
+              fontWeight: FontWeight.bold,
+              fontSize: ZohSizes.md,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildDotIndicators() {
+    return FadeInUp(
+      duration: const Duration(milliseconds: 1200),
+      delay: const Duration(milliseconds: 900),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: List.generate(
+          _onBoardingData.length,
+              (index) => Padding(
+            padding: const EdgeInsets.only(left: ZohSizes.xs),
+            child: DotIndicator(isActiveDot: index == _pageIndex),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildActionButton(bool isLastPage) {
+    return SizedBox(
+      width: double.infinity,
+      child: BounceInUp(
+        duration: const Duration(milliseconds: 1200),
+        delay: const Duration(milliseconds: 1200),
+        child: ElevatedButton(
+          onPressed: _isAnimating ? null : _nextPage,
+          style: ElevatedButton.styleFrom(
+            elevation: _isAnimating ? 2 : 5,
+            backgroundColor: ZohColors.primaryColor,
+            disabledBackgroundColor: ZohColors.primaryColor.withOpacity(0.7),
+            side: BorderSide(color: ZohColors.primaryColor),
+            padding: const EdgeInsets.symmetric(vertical: ZohSizes.md),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(ZohSizes.md),
+            ),
+          ),
+          child: AnimatedSwitcher(
+            duration: const Duration(milliseconds: 300),
+            transitionBuilder: (child, animation) {
+              return FadeTransition(
+                opacity: animation,
+                child: ScaleTransition(
+                  scale: animation,
+                  child: child,
+                ),
+              );
+            },
+            child: Text(
+              isLastPage ? 'Get Started' : 'Next',
+              key: ValueKey(isLastPage),
+              style: GoogleFonts.merriweather(
+                fontSize: ZohSizes.spaceBtwZoh,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
+            ),
           ),
         ),
       ),
